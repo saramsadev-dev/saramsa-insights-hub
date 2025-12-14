@@ -8,6 +8,7 @@ import logo from "@/assets/saramsa-logo.png";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Features", path: "/features" },
+  { name: "Integrations", path: "/integrations" },
   { name: "About", path: "/about" },
   { name: "Partnerships", path: "/partnerships" },
   { name: "Pricing", path: "/pricing" },
