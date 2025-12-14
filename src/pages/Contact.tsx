@@ -8,6 +8,21 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlowOrb } from "@/components/3d/GlowOrb";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().min(1, "Email is required").email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  company: z.string().max(100, "Company name must be less than 100 characters").optional(),
+  message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters"),
+});
+
+type FormErrors = {
+  name?: string;
+  email?: string;
+  company?: string;
+  message?: string;
+};
 
 const Contact = () => {
   const { toast } = useToast();
@@ -17,18 +32,61 @@ const Contact = () => {
     company: "",
     message: "",
   });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const validateField = (name: string, value: string) => {
+    try {
+      const fieldSchema = contactSchema.shape[name as keyof typeof contactSchema.shape];
+      if (fieldSchema) {
+        fieldSchema.parse(value);
+        setErrors(prev => ({ ...prev, [name]: undefined }));
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        setErrors(prev => ({ ...prev, [name]: error.errors[0]?.message }));
+      }
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const result = contactSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const fieldErrors: FormErrors = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as keyof FormErrors] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      setTouched({ name: true, email: true, company: true, message: true });
+      return;
+    }
+
     toast({
       title: "Message sent!",
       description: "We'll get back to you within 24 hours.",
     });
     setFormData({ name: "", email: "", company: "", message: "" });
+    setErrors({});
+    setTouched({});
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    if (touched[name]) {
+      validateField(name, value);
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    validateField(name, value);
   };
 
   return (
@@ -141,10 +199,19 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       placeholder="John Doe"
-                      required
-                      className="bg-background/50"
+                      className={`bg-background/50 ${errors.name && touched.name ? 'border-destructive focus-visible:ring-destructive' : ''}`}
                     />
+                    {errors.name && touched.name && (
+                      <motion.p 
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-1.5 text-sm font-medium text-destructive"
+                      >
+                        {errors.name}
+                      </motion.p>
+                    )}
                   </div>
 
                   <div>
@@ -157,10 +224,19 @@ const Contact = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       placeholder="john@company.com"
-                      required
-                      className="bg-background/50"
+                      className={`bg-background/50 ${errors.email && touched.email ? 'border-destructive focus-visible:ring-destructive' : ''}`}
                     />
+                    {errors.email && touched.email && (
+                      <motion.p 
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-1.5 text-sm font-medium text-destructive"
+                      >
+                        {errors.email}
+                      </motion.p>
+                    )}
                   </div>
 
                   <div>
@@ -172,9 +248,19 @@ const Contact = () => {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       placeholder="Your Company"
-                      className="bg-background/50"
+                      className={`bg-background/50 ${errors.company && touched.company ? 'border-destructive focus-visible:ring-destructive' : ''}`}
                     />
+                    {errors.company && touched.company && (
+                      <motion.p 
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-1.5 text-sm font-medium text-destructive"
+                      >
+                        {errors.company}
+                      </motion.p>
+                    )}
                   </div>
 
                   <div>
@@ -186,11 +272,20 @@ const Contact = () => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       placeholder="Tell us about your needs..."
                       rows={5}
-                      required
-                      className="bg-background/50"
+                      className={`bg-background/50 ${errors.message && touched.message ? 'border-destructive focus-visible:ring-destructive' : ''}`}
                     />
+                    {errors.message && touched.message && (
+                      <motion.p 
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-1.5 text-sm font-medium text-destructive"
+                      >
+                        {errors.message}
+                      </motion.p>
+                    )}
                   </div>
 
                   <Button type="submit" variant="hero" size="lg" className="w-full">
