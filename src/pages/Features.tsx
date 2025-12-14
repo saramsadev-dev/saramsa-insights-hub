@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
-  Brain, MessageSquare, BarChart3, Zap, Shield, Globe, 
+  Brain, MessageSquare, BarChart3, Zap, GitBranch, 
   TrendingUp, Users, FileText, Bell, Layers, Search,
   ArrowRight
 } from "lucide-react";
@@ -20,20 +20,27 @@ const coreFeatures = [
     description: "Advanced AI algorithms analyze sentiment, trends, and patterns in customer feedback automatically.",
   },
   {
+    icon: BarChart3,
+    title: "Actionable Insights",
+    description: "Transform raw feedback into clear recommendations that drive product and service improvements.",
+  },
+  {
     icon: MessageSquare,
-    title: "Multi-Channel Integration",
+    title: "Multi-Channel Data Integration",
     description: "Collect feedback from reviews, surveys, social media, and support tickets in one unified platform.",
   },
   {
-    icon: BarChart3,
-    title: "Actionable Insights",
-    description: "Transform raw data into clear recommendations that drive product and service improvements.",
-  },
+    icon: GitBranch,
+    title: "Connected Workflows",
+    description:
+      "Saramsa fits into the tools your teams already use, linking insights with Jira, Azure DevOps, Asana, and Slack."
+  },    
   {
     icon: Zap,
     title: "Real-Time Processing",
     description: "Get instant insights as feedback comes in with our lightning-fast processing engine.",
   },
+  /*
   {
     icon: Shield,
     title: "Enterprise Security",
@@ -43,7 +50,7 @@ const coreFeatures = [
     icon: Globe,
     title: "Global Scale",
     description: "Support for 100+ languages with automatic translation and cultural context analysis.",
-  },
+  },*/
 ];
 
 const advancedFeatures = [
@@ -52,31 +59,37 @@ const advancedFeatures = [
     title: "Trend Detection",
     description: "Automatically identify emerging trends and patterns in customer sentiment over time.",
   },
-  {
+  /*{
     icon: Users,
     title: "Customer Segmentation",
     description: "Group customers based on feedback patterns, preferences, and behavior.",
   },
   {
-    icon: FileText,
-    title: "Automated Reports",
-    description: "Schedule and customize reports delivered to your inbox with key insights.",
-  },
-  {
     icon: Bell,
     title: "Smart Alerts",
     description: "Get notified instantly when critical feedback patterns or anomalies are detected.",
-  },
+  },*/
   {
     icon: Layers,
     title: "Custom Dashboards",
     description: "Build personalized dashboards with drag-and-drop widgets and visualizations.",
   },
   {
+    icon: Layers,
+    title: "Smart Feedback Organisation",
+    description:
+      "Customer feedback is thoughtfully organised into clear categories such as bugs, enhancements, and feature requests, making it easier to act on."
+  },
+  {
+    icon: FileText,
+    title: "Automated Reports",
+    description: "Schedule and customize reports delivered to your inbox with key insights.",
+  },
+  /*{
     icon: Search,
     title: "Deep Search",
     description: "Semantic search across all feedback data to find exactly what you're looking for.",
-  },
+  },*/
 ];
 
 const Features = () => {
