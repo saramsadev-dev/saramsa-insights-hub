@@ -4,8 +4,9 @@ import { Target, Eye, Heart, Users, Award, Rocket, ArrowRight } from "lucide-rea
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingCube } from "@/components/3d/FloatingCube";
-import { FloatingSphere } from "@/components/3d/FloatingSphere";
+import { FloatingBubble } from "@/components/3d/FloatingBubble";
+import { FloatingBrain } from "@/components/3d/FloatingBrain";
+import { FloatingNodes } from "@/components/3d/FloatingNodes";
 import { GlowOrb } from "@/components/3d/GlowOrb";
 
 const values = [
@@ -55,8 +56,9 @@ const About = () => {
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <GlowOrb size={450} className="top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2" delay={0.2} />
-        <FloatingCube size={70} className="top-40 right-[12%] hidden lg:block" delay={0.3} />
-        <FloatingSphere size={90} className="bottom-20 left-[10%] hidden lg:block" delay={0.5} />
+        <FloatingBubble size={70} className="top-40 right-[12%] hidden lg:block" delay={0.3} />
+        <FloatingNodes size={90} className="bottom-20 left-[10%] hidden lg:block" delay={0.5} />
+        <FloatingBrain size={80} className="top-60 right-[25%] hidden lg:block" delay={0.7} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
