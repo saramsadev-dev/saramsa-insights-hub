@@ -17,7 +17,7 @@ const coreFeatures = [
   {
     icon: Brain,
     title: "AI-Powered Analysis",
-    description: "Advanced machine learning algorithms analyze sentiment, trends, and patterns in customer feedback automatically.",
+    description: "Advanced AI algorithms analyze sentiment, trends, and patterns in customer feedback automatically.",
   },
   {
     icon: MessageSquare,
