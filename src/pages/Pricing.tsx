@@ -10,7 +10,7 @@ const plans = [
   {
     name: "Starter",
     description: "Perfect for small teams getting started with feedback analysis",
-    price: "$99",
+    price: "$29",
     period: "/month",
     features: [
       "Up to 5,000 feedback entries/month",
