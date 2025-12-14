@@ -8,8 +8,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingCube } from "@/components/3d/FloatingCube";
-import { FloatingSphere } from "@/components/3d/FloatingSphere";
+import { FloatingBubble } from "@/components/3d/FloatingBubble";
+import { FloatingBrain } from "@/components/3d/FloatingBrain";
+import { FloatingChart } from "@/components/3d/FloatingChart";
 import { GlowOrb } from "@/components/3d/GlowOrb";
 
 const coreFeatures = [
@@ -87,8 +88,9 @@ const Features = () => {
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <GlowOrb size={400} className="top-0 right-1/4 -translate-y-1/2" delay={0.2} />
-        <FloatingCube size={60} className="top-40 right-[10%] hidden lg:block" delay={0.3} />
-        <FloatingSphere size={80} className="top-60 left-[15%] hidden lg:block" delay={0.5} />
+        <FloatingChart size={70} className="top-40 right-[10%] hidden lg:block" delay={0.3} />
+        <FloatingBrain size={90} className="top-60 left-[15%] hidden lg:block" delay={0.5} />
+        <FloatingBubble size={60} className="bottom-20 right-[20%] hidden lg:block" delay={0.7} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div

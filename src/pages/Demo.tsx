@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlowOrb } from "@/components/3d/GlowOrb";
+import { FloatingBrain } from "@/components/3d/FloatingBrain";
+import { FloatingNodes } from "@/components/3d/FloatingNodes";
 
 const demoFeatures = [
   { icon: MessageSquare, title: "Feedback Collection", description: "See how we aggregate feedback from multiple sources" },
@@ -34,6 +36,8 @@ const Demo = () => {
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <GlowOrb size={400} className="top-0 left-1/4 -translate-y-1/2" />
+        <FloatingBrain size={100} className="top-40 right-[12%] hidden lg:block" delay={0.3} />
+        <FloatingNodes size={80} className="top-60 left-[10%] hidden lg:block" delay={0.5} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div

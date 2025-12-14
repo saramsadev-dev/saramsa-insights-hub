@@ -4,8 +4,10 @@ import { ArrowRight, BarChart3, Brain, MessageSquare, Zap, Shield, Globe } from 
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingCube } from "@/components/3d/FloatingCube";
-import { FloatingSphere } from "@/components/3d/FloatingSphere";
+import { FloatingBubble } from "@/components/3d/FloatingBubble";
+import { FloatingBrain } from "@/components/3d/FloatingBrain";
+import { FloatingChart } from "@/components/3d/FloatingChart";
+import { FloatingNodes } from "@/components/3d/FloatingNodes";
 import { GlowOrb } from "@/components/3d/GlowOrb";
 
 const features = [
@@ -61,10 +63,10 @@ const Index = () => {
         <GlowOrb size={400} className="bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2" delay={0.5} />
         
         {/* 3D Elements */}
-        <FloatingCube size={80} className="top-1/4 right-[15%] hidden lg:block" delay={0.3} />
-        <FloatingCube size={50} className="bottom-1/3 left-[10%] hidden lg:block" delay={0.6} />
-        <FloatingSphere size={120} className="top-1/3 left-[20%] hidden lg:block" delay={0.4} />
-        <FloatingSphere size={80} className="bottom-1/4 right-[20%] hidden lg:block" delay={0.7} />
+        <FloatingBrain size={120} className="top-1/4 right-[15%] hidden lg:block" delay={0.3} />
+        <FloatingBubble size={70} className="bottom-1/3 left-[10%] hidden lg:block" delay={0.6} />
+        <FloatingChart size={90} className="top-1/3 left-[18%] hidden lg:block" delay={0.4} />
+        <FloatingNodes size={100} className="bottom-1/4 right-[18%] hidden lg:block" delay={0.7} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
