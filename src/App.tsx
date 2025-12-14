@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Features from "./pages/Features";
+import Integrations from "./pages/Integrations";
 import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 import Partnerships from "./pages/Partnerships";
@@ -25,6 +26,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/features" element={<Features />} />
+          <Route path="/integrations" element={<Integrations />} />
           <Route path="/about" element={<About />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/partnerships" element={<Partnerships />} />
