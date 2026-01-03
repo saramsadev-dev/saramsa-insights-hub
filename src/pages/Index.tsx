@@ -63,23 +63,13 @@ const Index = () => {
         <GlowOrb size={400} className="bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2" delay={0.5} />
         
         {/* 3D Elements */}
-        <FloatingBrain size={120} className="top-1/4 right-[15%] hidden lg:block" delay={0.3} />
+        <FloatingBrain size={80} className="top-1/4 right-[15%] hidden lg:block" delay={0.3} />
         <FloatingBubble size={70} className="bottom-1/3 left-[10%] hidden lg:block" delay={0.6} />
         <FloatingChart size={90} className="top-1/3 left-[18%] hidden lg:block" delay={0.4} />
-        <FloatingNodes size={100} className="bottom-1/4 right-[18%] hidden lg:block" delay={0.7} />
+        <FloatingNodes size={60} className="bottom-1/4 right-[18%] hidden lg:block" delay={0.7} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-6">
-                AI-Powered Customer Intelligence
-              </span>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

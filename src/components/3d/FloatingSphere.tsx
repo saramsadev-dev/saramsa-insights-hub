@@ -38,7 +38,7 @@ export const FloatingSphere = ({
           className="absolute inset-0 rounded-full blur-2xl"
           style={{
             background:
-              "radial-gradient(circle, rgba(252,152,66,0.45) 0%, rgba(254,95,117,0.3) 45%, transparent 70%)",
+              "radial-gradient(circle, rgba(var(--color-primary-rgb),0.45) 0%, rgba(var(--color-secondary-rgb),0.3) 45%, transparent 70%)",
           }}
         />
 
@@ -46,9 +46,9 @@ export const FloatingSphere = ({
         <div
           className="absolute inset-0 rounded-full backdrop-blur-sm"
           style={{
-            border: "1px solid rgba(254,95,117,0.3)",
+            border: "1px solid rgba(var(--color-secondary-rgb),0.3)",
             background:
-              "radial-gradient(circle at 30% 30%, rgba(252,152,66,0.4), rgba(254,95,117,0.25), transparent 60%)",
+              "radial-gradient(circle at 30% 30%, rgba(var(--color-primary-rgb),0.4), rgba(var(--color-secondary-rgb),0.25), transparent 60%)",
           }}
         />
 
@@ -61,7 +61,7 @@ export const FloatingSphere = ({
             top: "22%",
             left: "22%",
             background:
-              "linear-gradient(135deg, #FC9842, #FE5F75)",
+              "linear-gradient(135deg, var(--color-primary-hex), var(--color-secondary-hex))",
             opacity: 0.7,
           }}
         />

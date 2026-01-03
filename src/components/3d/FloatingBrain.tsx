@@ -46,7 +46,7 @@ export const FloatingBrain = ({
           className="absolute inset-0 rounded-full blur-2xl"
           style={{
             background:
-              "conic-gradient(from 0deg, #FC9842, #FE5F75, #FC9842)",
+              "conic-gradient(from 0deg, var(--color-primary-hex), var(--color-secondary-hex), var(--color-primary-hex))",
           }}
         />
 
@@ -57,7 +57,7 @@ export const FloatingBrain = ({
                      group-hover:border-white/25"
           style={{
             background:
-              "radial-gradient(circle at 30% 30%, rgba(252,152,66,0.35), rgba(254,95,117,0.2), transparent 65%)",
+              "radial-gradient(circle at 30% 30%, rgba(var(--color-primary-rgb),0.35), rgba(var(--color-secondary-rgb),0.2), transparent 65%)",
           }}
         >
           {/* Gradient Brain Icon */}
@@ -66,7 +66,7 @@ export const FloatingBrain = ({
             strokeWidth={1.4}
             style={{
               stroke: "url(#brain-gradient)",
-              filter: "drop-shadow(0 0 12px rgba(254,95,117,0.45))",
+              filter: "drop-shadow(0 0 12px rgba(var(--color-secondary-rgb),0.45))",
             }}
           />
         </div>
@@ -81,8 +81,8 @@ export const FloatingBrain = ({
               x2="100%"
               y2="100%"
             >
-              <stop offset="0%" stopColor="#FC9842" />
-              <stop offset="100%" stopColor="#FE5F75" />
+              <stop offset="0%" stopColor="var(--color-primary-hex)" />
+              <stop offset="100%" stopColor="var(--color-secondary-hex)" />
             </linearGradient>
           </defs>
         </svg>
@@ -107,8 +107,8 @@ export const FloatingBrain = ({
               top: `${22 + i * 24}%`,
               left: `${68 + (i % 2) * 18}%`,
               background:
-                "linear-gradient(135deg, #FC9842, #FE5F75)",
-              boxShadow: "0 0 12px rgba(254,95,117,0.6)",
+                "linear-gradient(135deg, var(--color-primary-hex), var(--color-secondary-hex))",
+              boxShadow: "0 0 12px rgba(var(--color-secondary-rgb),0.6)",
             }}
           />
         ))}

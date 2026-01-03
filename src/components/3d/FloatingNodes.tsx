@@ -46,35 +46,42 @@ export const FloatingNodes = ({
         style={{ width: size, height: size }}
       >
         {/* 🔗 Connection lines */}
-        <svg className="absolute inset-0" width={size} height={size}>
-          <defs>
-            <linearGradient
-              id="node-line-gradient"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop offset="0%" stopColor="#FC9842" />
-              <stop offset="100%" stopColor="#FE5F75" />
-            </linearGradient>
-          </defs>
+<svg
+  className="absolute inset-0"
+  viewBox="0 0 100 100"
+  width={size}
+  height={size}
+  preserveAspectRatio="none"
+>
+  <defs>
+    <linearGradient
+      id="node-line-gradient"
+      x1="0%"
+      y1="0%"
+      x2="100%"
+      y2="100%"
+    >
+      <stop offset="0%" stopColor="var(--color-primary-hex)" />
+      <stop offset="100%" stopColor="var(--color-secondary-hex)" />
+    </linearGradient>
+  </defs>
 
-          {connections.map(([from, to], i) => (
-            <motion.line
-              key={i}
-              x1={`${nodes[from].x}%`}
-              y1={`${nodes[from].y}%`}
-              x2={`${nodes[to].x}%`}
-              y2={`${nodes[to].y}%`}
-              stroke="url(#node-line-gradient)"
-              strokeWidth="1"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.6 }}
-              transition={{ duration: 1, delay: delay + i * 0.1 }}
-            />
-          ))}
-        </svg>
+  {connections.map(([from, to], i) => (
+    <motion.line
+      key={i}
+      x1={nodes[from].x}
+      y1={nodes[from].y}
+      x2={nodes[to].x}
+      y2={nodes[to].y}
+      stroke="url(#node-line-gradient)"
+      strokeWidth={0.8}
+      strokeLinecap="round"
+      initial={{ pathLength: 0, opacity: 0 }}
+      animate={{ pathLength: 1, opacity: 0.6 }}
+      transition={{ duration: 1, delay: delay + i * 0.12 }}
+    />
+  ))}
+</svg>
 
         {/* 🔵 Data nodes */}
         {nodes.map((node, i) => (
@@ -97,9 +104,9 @@ export const FloatingNodes = ({
               top: `${node.y}%`,
               transform: "translate(-50%, -50%)",
               background:
-                "linear-gradient(135deg, #FC9842, #FE5F75)",
+                "linear-gradient(135deg, var(--color-primary-hex), var(--color-secondary-hex))",
               boxShadow:
-                "0 0 12px rgba(252,152,66,0.6), 0 0 20px rgba(254,95,117,0.4)",
+                "0 0 12px rgba(var(--color-primary-rgb),0.6), 0 0 20px rgba(var(--color-secondary-rgb),0.4)",
             }}
           />
         ))}
@@ -111,7 +118,7 @@ export const FloatingNodes = ({
           className="absolute inset-0 rounded-full blur-2xl"
           style={{
             background:
-              "radial-gradient(circle, rgba(252,152,66,0.4) 0%, rgba(254,95,117,0.25) 45%, transparent 70%)",
+              "radial-gradient(circle, rgba(var(--color-primary-rgb),0.4) 0%, rgba(var(--color-secondary-rgb),0.25) 45%, transparent 70%)",
           }}
         />
       </motion.div>

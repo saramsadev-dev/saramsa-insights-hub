@@ -40,9 +40,9 @@ export const FloatingChart = ({
         style={{
           width: size,
           height: size,
-          border: "1px solid rgba(254,95,117,0.35)",
+          border: "1px solid rgba(var(--color-secondary-rgb),0.35)",
           background:
-            "linear-gradient(135deg, rgba(252,152,66,0.12), rgba(254,95,117,0.08))",
+            "linear-gradient(135deg, rgba(var(--color-primary-rgb),0.12), rgba(var(--color-secondary-rgb),0.08))",
         }}
       >
         {/* 📊 Chart bars */}
@@ -62,8 +62,8 @@ export const FloatingChart = ({
               className="flex-1 rounded-t"
               style={{
                 background:
-                  "linear-gradient(to top, #FC9842, #FE5F75)",
-                boxShadow: "0 0 8px rgba(254,95,117,0.4)",
+                  "linear-gradient(to top, var(--color-primary-hex), var(--color-secondary-hex))",
+                boxShadow: "0 0 8px rgba(var(--color-secondary-rgb),0.4)",
               }}
             />
           ))}
@@ -77,7 +77,7 @@ export const FloatingChart = ({
           className="absolute bottom-6 left-3 right-3 h-0.5"
           style={{
             background:
-              "linear-gradient(to right, transparent, #FC9842, #FE5F75, transparent)",
+              "linear-gradient(to right, transparent, var(--color-primary-hex), var(--color-secondary-hex), transparent)",
             opacity: 0.7,
           }}
         />
@@ -89,7 +89,7 @@ export const FloatingChart = ({
           className="absolute inset-0 rounded-xl blur-xl pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, rgba(252,152,66,0.35) 0%, rgba(254,95,117,0.25) 45%, transparent 70%)",
+              "radial-gradient(circle, rgba(var(--color-primary-rgb),0.35) 0%, rgba(var(--color-secondary-rgb),0.25) 45%, transparent 70%)",
           }}
         />
       </motion.div>

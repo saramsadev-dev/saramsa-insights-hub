@@ -39,7 +39,7 @@ export const FloatingBubble = ({
           className="absolute inset-0 rounded-2xl blur-lg"
           style={{
             background:
-              "radial-gradient(circle, rgba(252,152,66,0.35) 0%, rgba(254,95,117,0.25) 45%, transparent 70%)",
+              "radial-gradient(circle, rgba(var(--color-primary-rgb),0.35) 0%, rgba(var(--color-secondary-rgb),0.25) 45%, transparent 70%)",
           }}
         />
 
@@ -47,9 +47,9 @@ export const FloatingBubble = ({
         <div
           className="absolute inset-0 rounded-2xl backdrop-blur-md flex items-center justify-center transition-all duration-300"
           style={{
-            border: "1px solid rgba(254,95,117,0.35)",
+            border: "1px solid rgba(var(--color-secondary-rgb),0.35)",
             background:
-              "linear-gradient(135deg, rgba(252,152,66,0.15), rgba(254,95,117,0.1))",
+              "linear-gradient(135deg, rgba(var(--color-primary-rgb),0.15), rgba(var(--color-secondary-rgb),0.1))",
           }}
         >
           {/* Gradient icon */}
@@ -58,7 +58,7 @@ export const FloatingBubble = ({
             strokeWidth={1.5}
             style={{
               stroke: "url(#bubble-gradient)",
-              filter: "drop-shadow(0 0 6px rgba(254,95,117,0.4))",
+              filter: "drop-shadow(0 0 6px rgba(var(--color-secondary-rgb),0.4))",
             }}
           />
         </div>
@@ -73,8 +73,8 @@ export const FloatingBubble = ({
               x2="100%"
               y2="100%"
             >
-              <stop offset="0%" stopColor="#FC9842" />
-              <stop offset="100%" stopColor="#FE5F75" />
+              <stop offset="0%" stopColor="var(--color-primary-hex)" />
+              <stop offset="100%" stopColor="var(--color-secondary-hex)" />
             </linearGradient>
           </defs>
         </svg>
@@ -86,8 +86,8 @@ export const FloatingBubble = ({
           className="absolute -top-1 -right-1 w-3 h-3 rounded-full"
           style={{
             background:
-              "linear-gradient(135deg, #FC9842, #FE5F75)",
-            boxShadow: "0 0 8px rgba(254,95,117,0.6)",
+              "linear-gradient(135deg, var(--color-primary-hex), var(--color-secondary-hex))",
+            boxShadow: "0 0 8px rgba(var(--color-secondary-rgb),0.6)",
           }}
         />
       </motion.div>

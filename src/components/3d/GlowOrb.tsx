@@ -33,7 +33,7 @@ export const GlowOrb = ({
           width: size,
           height: size,
           background:
-            "radial-gradient(circle, rgba(252,152,66,0.45) 0%, rgba(254,95,117,0.35) 45%, transparent 70%)",
+            "radial-gradient(circle, rgba(var(--color-primary-rgb),0.45) 0%, rgba(var(--color-secondary-rgb),0.35) 45%, transparent 70%)",
         }}
       />
     </motion.div>

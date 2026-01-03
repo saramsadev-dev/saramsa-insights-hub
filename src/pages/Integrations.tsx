@@ -132,13 +132,11 @@ const Integrations = () => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
-              Integrations
-            </span>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Connect Your
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-glow"> Entire Stack</span>
             </h1>
+            <br/>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Saramsa.ai integrates with your favorite tools to capture feedback from every source and push action items where your team works.
             </p>

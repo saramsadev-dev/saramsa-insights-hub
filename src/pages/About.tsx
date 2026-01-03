@@ -57,8 +57,7 @@ const About = () => {
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <GlowOrb size={450} className="top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2" delay={0.2} />
         <FloatingBubble size={70} className="top-40 right-[12%] hidden lg:block" delay={0.3} />
-        <FloatingNodes size={90} className="bottom-20 left-[10%] hidden lg:block" delay={0.5} />
-        <FloatingBrain size={80} className="top-60 right-[25%] hidden lg:block" delay={0.7} />
+        <FloatingBrain size={80} className="bottom-20 left-[12%] hidden lg:block" delay={0.7} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
@@ -67,9 +66,6 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-6">
-              About Us
-            </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
               Empowering Businesses to{" "}
               <span className="text-gradient">Listen Better</span>

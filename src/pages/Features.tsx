@@ -98,12 +98,13 @@ const Features = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-60 pb-20 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
+
         <GlowOrb size={400} className="top-0 right-1/4 -translate-y-1/2" delay={0.2} />
         <FloatingChart size={70} className="top-40 right-[10%] hidden lg:block" delay={0.3} />
-        <FloatingBrain size={90} className="top-60 left-[15%] hidden lg:block" delay={0.5} />
-        <FloatingBubble size={60} className="bottom-20 right-[20%] hidden lg:block" delay={0.7} />
+        {/*<FloatingBrain size={90} className="top-60 left-[15%] hidden lg:block" delay={0.5} />*/}
+        <FloatingBubble size={60} className="bottom-20 left-[15%] hidden lg:block" delay={0.7} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
@@ -112,9 +113,6 @@ const Features = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-6">
-              Platform Features
-            </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
               Everything You Need to{" "}
               <span className="text-gradient">Understand Customers</span>

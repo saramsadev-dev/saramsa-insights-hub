@@ -47,15 +47,71 @@
     /* Custom tokens */
     --glow-primary: 0 0 20px rgba(252, 152, 66, 0.2), 0 0 10px rgba(254, 95, 117, 0.15);
     --glow-subtle: 0 0 10px rgba(252, 152, 66, 0.1), 0 0 5px rgba(254, 95, 117, 0.1);
-    --gradient-primary: linear-gradient(135deg, #FC9842, #FE5F75);
+    --gradient-primary: linear-gradient(135deg, #FF8921, #FF2F4B);
     --gradient-dark: linear-gradient(180deg, hsl(0 0% 6%), hsl(0 0% 4%));
     --gradient-radial: radial-gradient(ellipse at center, hsl(22 97% 62% / 0.15) 0%, transparent 70%);
+    
+    /* 3D Component Colors */
+    --color-primary-hex: #FF8921;
+    --color-secondary-hex: #FF2F4B;
+    --color-primary-rgb: 252, 152, 66;
+    --color-secondary-rgb: 254, 95, 117;
+
+    /* Brand colors */
+    --color-primary: #FF8921;
+    --color-secondary: #FF2F4B;
+
+    /* RGB tokens (used everywhere) */
+    --color-primary-rgb: 255, 137, 33;
+    --color-secondary-rgb: 255, 47, 75;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      rgb(var(--color-primary-rgb)) 0%,
+      rgb(var(--color-secondary-rgb)) 100%
+    );
+
+    --gradient-primary-soft: linear-gradient(
+      135deg,
+      rgba(var(--color-primary-rgb), 0.65) 0%,
+      rgba(var(--color-secondary-rgb), 0.65) 100%
+    );
+
+    --gradient-radial: radial-gradient(
+      circle at 30% 30%,
+      rgba(var(--color-primary-rgb), 0.45) 0%,
+      rgba(var(--color-secondary-rgb), 0.35) 48%,
+      transparent 72%
+    );
+
+    /* Glow system */
+    --glow-primary: 0 0 60px rgba(var(--color-secondary-rgb), 0.55);
+    --glow-subtle: 0 0 32px rgba(var(--color-primary-rgb), 0.35);
+
+    /* Chart bars */
+    --chart-bar-from: rgba(var(--color-primary-rgb), 0.85);
+    --chart-bar-to: rgba(var(--color-secondary-rgb), 0.75);
+
+    /* Glass / surface */
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.08);
+
+
+  /* Dark mode boost */
+  .dark {
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-border: rgba(255, 255, 255, 0.12);
+
+    --glow-primary: 0 0 80px rgba(var(--color-secondary-rgb), 0.65);
+    --glow-subtle: 0 0 40px rgba(var(--color-primary-rgb), 0.45);
   }
 
   .dark {
     --background: 0 0% 4%;
     --foreground: 0 0% 98%;
   }
+}
 }
 
 @layer base {
@@ -221,4 +277,30 @@
     linear-gradient(hsl(0 0% 18% / 0.3) 1px, transparent 1px),
     linear-gradient(90deg, hsl(0 0% 18% / 0.3) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+.bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.bg-gradient-primary-soft {
+  background: var(--gradient-primary-soft);
+}
+
+.bg-gradient-radial {
+  background: var(--gradient-radial);
+}
+
+.glow-primary {
+  box-shadow: var(--glow-primary);
+}
+
+.glow-subtle {
+  box-shadow: var(--glow-subtle);
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
 }
