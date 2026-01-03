@@ -2,9 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Navbar } from "@/components/layout/Navbar";
+import { NavbarWhite } from "@/components/layout/NavbarWhite";
 import { Footer } from "@/components/layout/Footer";
-import { GlowOrb } from "@/components/3d/GlowOrb";
 
 const plans = [
   {
@@ -61,30 +60,26 @@ const plans = [
   },
 ];
 
-const Pricing = () => {
+const Sample = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-white text-black">
+      <NavbarWhite />
 
       {/* Hero */}
-      <section className="relative pt-32 md:pt-40 pb-10">
-        <div className="absolute inset-0 grid-pattern opacity-50" />
-        <GlowOrb
-          size={400}
-          className="top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        />
-
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <section className="pt-32 md:pt-40 pb-12">
+        <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Simple, Transparent{" "}
-              <span className="text-gradient">Pricing</span>
+              <span className="text-gradient">
+                Pricing
+              </span>
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-black/70">
               Choose the plan that fits your needs. All plans include a 14-day free trial.
             </p>
           </motion.div>
@@ -92,10 +87,9 @@ const Pricing = () => {
       </section>
 
       {/* Pricing Cards */}
-      <section className="relative pt-20 -mt-6 md:-mt-10">
+      <section className="pt-20">
         <div className="container mx-auto px-4 lg:px-8">
-          {/* GROUP is important for hover interaction */}
-          <div className="group grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {plans.map((plan, index) => (
               <motion.div
                 key={plan.name}
@@ -103,24 +97,17 @@ const Pricing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`
-                  relative rounded-2xl p-8
-                  transition-all duration-300 ease-out
-                  group-hover:scale-[0.98]
-                  hover:!scale-105 hover:z-10
-                  hover:shadow-[0_0_40px_-10px_rgba(var(--color-secondary-rgb),0.45)]
-                  hover:border-primary/70
+                className={`relative rounded-2xl p-8 border transition-transform
                   ${
                     plan.popular
-                      ? "glass-strong border-primary/50 scale-105"
-                      : "glass border border-transparent"
+                      ? "border-primary shadow-lg scale-105"
+                      : "border-black/10 hover:scale-105"
                   }
                 `}
               >
-                
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-1 px-4 py-1 rounded-full bg-gradient-primary-btn text-primary-foreground text-sm font-medium">
+                    <span className="inline-flex items-center gap-1 px-4 py-1 rounded-full bg-primary text-primary-foreground text-sm font-medium">
                       <Sparkles className="w-4 h-4" />
                       Most Popular
                     </span>
@@ -128,28 +115,22 @@ const Pricing = () => {
                 )}
 
                 <div className="mb-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    {plan.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
+                  <p className="text-sm text-black/70">
                     {plan.description}
                   </p>
                 </div>
 
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-foreground">
-                    {plan.price}
-                  </span>
-                  <span className="text-muted-foreground">
-                    {plan.period}
-                  </span>
+                  <span className="text-4xl font-bold">{plan.price}</span>
+                  <span className="text-black/60">{plan.period}</span>
                 </div>
 
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-sm text-black/70">
                         {feature}
                       </span>
                     </li>
@@ -175,7 +156,7 @@ const Pricing = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 lg:py-24 border-t border-border">
+      <section className="py-16 lg:py-24 border-t border-black/10 mt-20">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -183,7 +164,7 @@ const Pricing = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold">
               Frequently Asked Questions
             </h2>
           </motion.div>
@@ -213,14 +194,10 @@ const Pricing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass rounded-xl p-6"
+                className="border border-black/10 rounded-xl p-6"
               >
-                <h4 className="font-semibold text-foreground mb-2">
-                  {faq.q}
-                </h4>
-                <p className="text-sm text-muted-foreground">
-                  {faq.a}
-                </p>
+                <h4 className="font-semibold mb-2">{faq.q}</h4>
+                <p className="text-sm text-black/70">{faq.a}</p>
               </motion.div>
             ))}
           </div>
@@ -232,4 +209,4 @@ const Pricing = () => {
   );
 };
 
-export default Pricing;
+export default Sample;

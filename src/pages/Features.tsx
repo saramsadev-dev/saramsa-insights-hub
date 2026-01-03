@@ -222,10 +222,10 @@ const Features = () => {
               Start your free trial today and see how Saramsa.ai can transform your customer insights.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button variant="hero" size="lg" asChild>
-                <Link to="/demo">
+              <Button variant="hero" size="xl">
+                <Link to="/demo" className="inline-flex items-center justify-center gap-2 w-full">
                   Try Free Demo
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>

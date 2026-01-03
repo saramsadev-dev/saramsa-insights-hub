@@ -65,7 +65,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {/* Ensure children/text stays above hover gradient */}
-        <span className="relative z-10">{props.children}</span>
+        {props.children}
       </Comp>
     );
   }

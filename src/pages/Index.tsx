@@ -96,11 +96,8 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <Button variant="hero" size="xl" asChild>
-                <Link
-                  to="/demo"
-                  className="inline-flex items-center justify-center gap-2 w-full"
-                >
+              <Button variant="hero" size="xl">
+                <Link to="/demo" className="inline-flex items-center justify-center gap-2 w-full">
                   Try Free Demo
                   <ArrowRight className="h-5 w-5" />
                 </Link>
