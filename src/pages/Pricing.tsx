@@ -67,9 +67,12 @@ const Pricing = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
+      <section className="relative pt-32 md:pt-40 pb-10">
         <div className="absolute inset-0 grid-pattern opacity-50" />
-        <GlowOrb size={400} className="top-0 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <GlowOrb
+          size={400}
+          className="top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
@@ -89,9 +92,10 @@ const Pricing = () => {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-16 lg:py-24 relative">
+      <section className="relative pt-20 -mt-6 md:-mt-10">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* GROUP is important for hover interaction */}
+          <div className="group grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {plans.map((plan, index) => (
               <motion.div
                 key={plan.name}
@@ -99,11 +103,17 @@ const Pricing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`relative rounded-2xl p-8 ${
-                  plan.popular
-                    ? "glass-strong border-primary/50 scale-105 lg:scale-110"
-                    : "glass"
-                }`}
+                className={`
+                  relative rounded-2xl p-8
+                  transition-all duration-300 ease-out
+                  group-hover:scale-[0.96]
+                  hover:!scale-105 hover:z-10
+                  ${
+                    plan.popular
+                      ? "glass-strong border-primary/50 scale-105"
+                      : "glass"
+                  }
+                `}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
@@ -115,20 +125,30 @@ const Pricing = () => {
                 )}
 
                 <div className="mb-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2">{plan.name}</h3>
-                  <p className="text-sm text-muted-foreground">{plan.description}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-2">
+                    {plan.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {plan.description}
+                  </p>
                 </div>
 
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-foreground">{plan.price}</span>
-                  <span className="text-muted-foreground">{plan.period}</span>
+                  <span className="text-4xl font-bold text-foreground">
+                    {plan.price}
+                  </span>
+                  <span className="text-muted-foreground">
+                    {plan.period}
+                  </span>
                 </div>
 
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm text-muted-foreground">{feature}</span>
+                      <span className="text-sm text-muted-foreground">
+                        {feature}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -139,7 +159,9 @@ const Pricing = () => {
                   size="lg"
                   asChild
                 >
-                  <Link to={plan.name === "Enterprise" ? "/contact" : "/demo"}>
+                  <Link
+                    to={plan.name === "Enterprise" ? "/contact" : "/demo"}
+                  >
                     {plan.cta}
                   </Link>
                 </Button>
@@ -167,19 +189,19 @@ const Pricing = () => {
             {[
               {
                 q: "Can I change plans at any time?",
-                a: "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate your billing.",
+                a: "Yes, you can upgrade or downgrade your plan at any time.",
               },
               {
                 q: "What happens if I exceed my monthly limit?",
-                a: "We'll notify you when you're approaching your limit. You can upgrade your plan or purchase additional capacity as needed.",
+                a: "We'll notify you and you can upgrade or add capacity.",
               },
               {
                 q: "Do you offer annual billing?",
-                a: "Yes, we offer a 20% discount on annual plans. Contact our sales team for more details.",
+                a: "Yes, we offer a 20% discount on annual plans.",
               },
               {
                 q: "Is there a setup fee?",
-                a: "No, there are no setup fees. You can start using Saramsa.ai immediately after signing up.",
+                a: "No, there are no setup fees.",
               },
             ].map((faq, i) => (
               <motion.div
@@ -190,8 +212,12 @@ const Pricing = () => {
                 transition={{ delay: i * 0.1 }}
                 className="glass rounded-xl p-6"
               >
-                <h4 className="font-semibold text-foreground mb-2">{faq.q}</h4>
-                <p className="text-sm text-muted-foreground">{faq.a}</p>
+                <h4 className="font-semibold text-foreground mb-2">
+                  {faq.q}
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  {faq.a}
+                </p>
               </motion.div>
             ))}
           </div>

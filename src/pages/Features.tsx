@@ -101,11 +101,13 @@ const Features = () => {
       <section className="relative pt-60 pb-20 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
 
-        <GlowOrb size={400} className="top-0 right-1/4 -translate-y-1/2" delay={0.2} />
+        <GlowOrb size={500} className="absolute top-1/4 right-[10%] translate-x-1/2 -translate-y-1/2 z=0" delay={0.2} />
+        <GlowOrb size={400} className="absolute bottom-1/4 left-[14%] -translate-x-1/2 translate-y-1/2 z=0" delay={0.5} />
+        
         <FloatingChart size={70} className="top-40 right-[10%] hidden lg:block" delay={0.3} />
         {/*<FloatingBrain size={90} className="top-60 left-[15%] hidden lg:block" delay={0.5} />*/}
         <FloatingBubble size={60} className="bottom-20 left-[15%] hidden lg:block" delay={0.7} />
-
+        
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

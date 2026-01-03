@@ -45,20 +45,20 @@ const Partnerships = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-60 pb-20 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <GlowOrb size={500} className="top-0 right-0 translate-x-1/3 -translate-y-1/3" />
         <FloatingSphere size={100} className="bottom-20 left-[10%] hidden lg:block" delay={0.3} />
-
+        
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-6">
+            {/*<span className="inline-block px-4 py-2 rounded-full glass text-sm text-primary font-medium mb-6">
               Partner Program
-            </span>
+            </span>*/}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
               Grow Together With{" "}
               <span className="text-gradient">Saramsa.ai</span>

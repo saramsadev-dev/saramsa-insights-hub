@@ -188,7 +188,7 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+  .animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
   .animate-scale-in { animation: scale-in 0.6s ease-out forwards; }
 
   /* Grid pattern background */

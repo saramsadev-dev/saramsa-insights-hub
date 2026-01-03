@@ -6,6 +6,7 @@ import { FloatingChart } from "@/components/3d/FloatingChart";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { GlowOrb } from "@/components/3d/GlowOrb";
 
 const taskTrackerIntegrations = [
   {
@@ -120,11 +121,17 @@ const Integrations = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+      <section className="relative pt-60 pb-20 overflow-hidden">
+        <div className="absolute inset-0 grid-pattern bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+        
+        <GlowOrb size={500} className="absolute top-1/2 right-[5%] translate-x-1/2 -translate-y-1/2 z=0" delay={0.2} />
+        <GlowOrb size={400} className="absolute bottom-2/3 left-[5%] -translate-x-1/2 translate-y-1/2 z=0" delay={0.2} />
+                
+        {/*
         <FloatingNodes className="absolute top-40 right-10 opacity-40" />
         <FloatingChart className="absolute bottom-20 left-10 opacity-30" />
-        
+        */}
+
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -132,11 +139,11 @@ const Integrations = () => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Connect Your
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-glow"> Entire Stack</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Connect Your{" "}
+              <span className="text-gradient">Entire Stack</span>
             </h1>
-            <br/>
+            
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Saramsa.ai integrates with your favorite tools to capture feedback from every source and push action items where your team works.
             </p>

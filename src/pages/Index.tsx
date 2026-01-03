@@ -65,7 +65,7 @@ const Index = () => {
         {/* 3D Elements */}
         <FloatingBrain size={80} className="top-1/4 right-[15%] hidden lg:block" delay={0.3} />
         <FloatingBubble size={70} className="bottom-1/3 left-[10%] hidden lg:block" delay={0.6} />
-        <FloatingChart size={90} className="top-1/3 left-[18%] hidden lg:block" delay={0.4} />
+        <FloatingChart size={60} className="top-1/3 left-[18%] hidden lg:block" delay={0.4} />
         <FloatingNodes size={60} className="bottom-1/4 right-[18%] hidden lg:block" delay={0.7} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">

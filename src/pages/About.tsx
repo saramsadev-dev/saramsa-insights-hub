@@ -53,7 +53,7 @@ const About = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-60 pb-20 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <GlowOrb size={450} className="top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2" delay={0.2} />
         <FloatingBubble size={70} className="top-40 right-[12%] hidden lg:block" delay={0.3} />
