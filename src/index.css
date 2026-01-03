@@ -58,6 +58,18 @@
       transparent 70%
     );
 
+    --gradient-primary-btn: linear-gradient(
+      135deg,
+      rgb(var(--color-primary-rgb)) 0%,
+      rgb(var(--color-secondary-rgb)) 70%
+    );
+
+    --gradient-primary-btn-soft: linear-gradient(
+      135deg,
+      rgba(var(--color-primary-rgb), 0.65) 0%,
+      rgba(var(--color-secondary-rgb), 0.65) 100%
+    );
+
     /* Glow system */
     --glow-primary: 0 0 60px rgba(var(--color-secondary-rgb), 0.55);
     --glow-subtle: 0 0 32px rgba(var(--color-primary-rgb), 0.35);
@@ -140,6 +152,24 @@
   .bg-gradient-radial {
     background: var(--gradient-radial);
   }
+
+  .bg-gradient-primary-btn {
+    background-image: var(--gradient-primary-btn);
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .bg-gradient-primary-btn-soft {
+    background-image: var(--gradient-primary-btn-soft);
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .bg-gradient-primary-btn:hover {
+    background-image: linear-gradient(
+      270deg,
+      rgba(var(--color-primary-rgb), 1) 0%,
+      rgba(var(--color-secondary-rgb), 1) 100%
+    );
+}
 
   /* Glow helpers */
   .glow-primary {

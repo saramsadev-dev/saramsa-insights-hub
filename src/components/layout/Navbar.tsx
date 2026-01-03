@@ -32,7 +32,6 @@ export const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <img src={logo} alt="Saramsa.ai" className="h-8 w-auto transition-transform group-hover:scale-105" />
-            <span className="text-xl font-bold text-foreground">Saramsa<span className="text-primary">.ai</span></span>
           </Link>
 
           {/* Desktop Navigation */}
