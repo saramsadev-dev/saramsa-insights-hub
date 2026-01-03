@@ -7,70 +7,108 @@ interface FloatingBrainProps {
   className?: string;
 }
 
-export const FloatingBrain = ({ size = 100, delay = 0, className = "" }: FloatingBrainProps) => {
+export const FloatingBrain = ({
+  size = 100,
+  delay = 0,
+  className = "",
+}: FloatingBrainProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0 }}
+      initial={{ opacity: 0, scale: 0.85 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, delay, type: "spring" }}
-      className={`absolute ${className}`}
+      whileHover={{ scale: 1.05 }}
+      className={`absolute group ${className}`}
     >
       <motion.div
         animate={{
           y: [-10, 10, -10],
-          rotateY: [0, 10, 0, -10, 0],
+          rotateY: [0, 12, 0, -12, 0],
         }}
         transition={{
-          duration: 6,
+          duration: 7,
           repeat: Infinity,
           ease: "easeInOut",
         }}
         className="relative"
         style={{ width: size, height: size }}
       >
-        {/* Neural glow effect */}
+        {/* Neural Glow */}
         <motion.div
-          animate={{ opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 3, repeat: Infinity }}
-          className="absolute inset-0 rounded-full blur-xl"
+          animate={{
+            opacity: [0.3, 0.65, 0.3],
+            rotate: [0, 360],
+          }}
+          transition={{
+            opacity: { duration: 3.5, repeat: Infinity },
+            rotate: { duration: 18, repeat: Infinity, ease: "linear" },
+          }}
+          className="absolute inset-0 rounded-full blur-2xl"
           style={{
-            background: "radial-gradient(circle, hsl(300 100% 50% / 0.4) 0%, transparent 70%)",
+            background:
+              "conic-gradient(from 0deg, #FC9842, #FE5F75, #FC9842)",
           }}
         />
-        
-        {/* Brain container */}
+
+        {/* Brain Container */}
         <div
-          className="absolute inset-0 rounded-full border border-primary/30 backdrop-blur-sm flex items-center justify-center"
+          className="absolute inset-0 rounded-full backdrop-blur-md flex items-center justify-center transition-all duration-300
+                     border border-white/10
+                     group-hover:border-white/25"
           style={{
-            background: "radial-gradient(circle at 30% 30%, hsl(300 100% 60% / 0.2), transparent 60%)",
+            background:
+              "radial-gradient(circle at 30% 30%, rgba(252,152,66,0.35), rgba(254,95,117,0.2), transparent 65%)",
           }}
         >
-          <Brain 
-            className="text-primary/80" 
-            size={size * 0.55} 
-            strokeWidth={1.5}
+          {/* Gradient Brain Icon */}
+          <Brain
+            size={size * 0.55}
+            strokeWidth={1.4}
+            style={{
+              stroke: "url(#brain-gradient)",
+              filter: "drop-shadow(0 0 12px rgba(254,95,117,0.45))",
+            }}
           />
         </div>
 
-        {/* Synapse pulses */}
+        {/* SVG Gradient Definition */}
+        <svg width="0" height="0">
+          <defs>
+            <linearGradient
+              id="brain-gradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor="#FC9842" />
+              <stop offset="100%" stopColor="#FE5F75" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        {/* ⚡ Synapse Pulses */}
         {[0, 1, 2].map((i) => (
           <motion.div
             key={i}
             animate={{
-              scale: [0, 1.5, 0],
-              opacity: [0.8, 0, 0.8],
+              scale: [0, 1.6, 0],
+              opacity: [0.9, 0, 0.9],
             }}
             transition={{
-              duration: 2,
+              duration: 2.2,
               repeat: Infinity,
-              delay: i * 0.6,
+              delay: i * 0.7,
             }}
-            className="absolute rounded-full bg-primary/50"
+            className="absolute rounded-full"
             style={{
               width: 8,
               height: 8,
-              top: `${20 + i * 25}%`,
-              left: `${70 + (i % 2) * 15}%`,
+              top: `${22 + i * 24}%`,
+              left: `${68 + (i % 2) * 18}%`,
+              background:
+                "linear-gradient(135deg, #FC9842, #FE5F75)",
+              boxShadow: "0 0 12px rgba(254,95,117,0.6)",
             }}
           />
         ))}

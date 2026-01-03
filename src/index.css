@@ -15,7 +15,7 @@
     --popover: 0 0% 6%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 300 100% 50%;
+    --primary: 22 97% 62%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 12%;
@@ -24,7 +24,7 @@
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 300 100% 50%;
+    --accent: 22 97% 62%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,16 +32,24 @@
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 300 100% 50%;
+    --ring: 22 97% 62%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
+    /*
     --glow-primary: 0 0 60px hsl(300 100% 50% / 0.4);
     --glow-subtle: 0 0 30px hsl(300 100% 50% / 0.2);
     --gradient-primary: linear-gradient(135deg, hsl(300 100% 50%), hsl(280 100% 60%));
     --gradient-dark: linear-gradient(180deg, hsl(0 0% 6%), hsl(0 0% 4%));
     --gradient-radial: radial-gradient(ellipse at center, hsl(300 100% 50% / 0.15) 0%, transparent 70%);
+    */
+    /* Custom tokens */
+    --glow-primary: 0 0 20px rgba(252, 152, 66, 0.2), 0 0 10px rgba(254, 95, 117, 0.15);
+    --glow-subtle: 0 0 10px rgba(252, 152, 66, 0.1), 0 0 5px rgba(254, 95, 117, 0.1);
+    --gradient-primary: linear-gradient(135deg, #FC9842, #FE5F75);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 6%), hsl(0 0% 4%));
+    --gradient-radial: radial-gradient(ellipse at center, hsl(22 97% 62% / 0.15) 0%, transparent 70%);
   }
 
   .dark {
@@ -69,6 +77,44 @@
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-primary);
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #FC9842, #FE5F75);
+    position: relative;
+    overflow: hidden;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .bg-gradient-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #FE5F75, #FC9842);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .bg-gradient-primary:hover::before {
+    opacity: 1;
+  }
+
+  .bg-gradient-primary > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
 
   .glow-primary {
@@ -132,10 +178,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px hsl(300 100% 50% / 0.3);
+    box-shadow: 0 0 8px rgba(252, 152, 66, 0.2), 0 0 4px rgba(254, 95, 117, 0.15);
   }
   50% {
-    box-shadow: 0 0 40px hsl(300 100% 50% / 0.6);
+    box-shadow: 0 0 15px rgba(252, 152, 66, 0.3), 0 0 8px rgba(254, 95, 117, 0.2);
   }
 }
 

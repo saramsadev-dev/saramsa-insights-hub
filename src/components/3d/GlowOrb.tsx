@@ -6,7 +6,11 @@ interface GlowOrbProps {
   className?: string;
 }
 
-export const GlowOrb = ({ size = 300, delay = 0, className = "" }: GlowOrbProps) => {
+export const GlowOrb = ({
+  size = 300,
+  delay = 0,
+  className = "",
+}: GlowOrbProps) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -16,11 +20,11 @@ export const GlowOrb = ({ size = 300, delay = 0, className = "" }: GlowOrbProps)
     >
       <motion.div
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
+          scale: [1, 1.15, 1],
+          opacity: [0.25, 0.45, 0.25],
         }}
         transition={{
-          duration: 8,
+          duration: 9,
           repeat: Infinity,
           ease: "easeInOut",
         }}
@@ -28,7 +32,8 @@ export const GlowOrb = ({ size = 300, delay = 0, className = "" }: GlowOrbProps)
         style={{
           width: size,
           height: size,
-          background: "radial-gradient(circle, hsl(300 100% 50% / 0.4) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(252,152,66,0.45) 0%, rgba(254,95,117,0.35) 45%, transparent 70%)",
         }}
       />
     </motion.div>
