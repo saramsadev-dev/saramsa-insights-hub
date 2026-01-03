@@ -97,11 +97,15 @@ const Index = () => {
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <Button variant="hero" size="xl" asChild>
-                <Link to="/demo">
+                <Link
+                  to="/demo"
+                  className="inline-flex items-center justify-center gap-2 w-full"
+                >
                   Try Free Demo
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
+
               <Button variant="glass" size="xl" asChild>
                 <Link to="/contact">Contact Sales</Link>
               </Button>
