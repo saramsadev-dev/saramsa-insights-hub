@@ -76,8 +76,8 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
             >
-              Turn Feedback Into{" "}
-              <span className="text-gradient">Actionable Insights</span>
+              Transform customer feedback into{" "}
+              <span className="text-gradient">Actionable Tasks</span>
             </motion.h1>
 
             <motion.p
