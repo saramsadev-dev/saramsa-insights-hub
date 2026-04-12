@@ -10,9 +10,21 @@ import { GlowOrb } from "@/components/3d/GlowOrb";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
+const FREE_EMAIL_DOMAINS = [
+  "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com",
+  "icloud.com", "mail.com", "protonmail.com", "zoho.com", "yandex.com",
+  "gmx.com", "live.com", "me.com", "msn.com", "rediffmail.com",
+];
+
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
-  email: z.string().trim().min(1, "Email is required").email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  email: z.string().trim().min(1, "Email is required").email("Please enter a valid email address").max(255, "Email must be less than 255 characters").refine(
+    (email) => {
+      const domain = email.split("@")[1]?.toLowerCase();
+      return domain && !FREE_EMAIL_DOMAINS.includes(domain);
+    },
+    { message: "Please use your work email address" }
+  ),
   company: z.string().max(100, "Company name must be less than 100 characters").optional(),
   message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters"),
 });
@@ -49,11 +61,13 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const result = contactSchema.safeParse(formData);
-    
+
     if (!result.success) {
       const fieldErrors: FormErrors = {};
       result.error.errors.forEach((err) => {
@@ -66,13 +80,47 @@ const Contact = () => {
       return;
     }
 
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({ name: "", email: "", company: "", message: "" });
-    setErrors({});
-    setTouched({});
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "ee023876-82da-44c6-9c81-68857637e16e",
+          from_name: "Saramsa.ai Contact Form",
+          subject: `Contact from ${result.data.name}${result.data.company ? ` (${result.data.company})` : ""}`,
+          name: result.data.name,
+          email: result.data.email,
+          company: result.data.company || "N/A",
+          message: result.data.message,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        toast({
+          title: "Message sent!",
+          description: "We'll get back to you within 24 hours.",
+        });
+        setFormData({ name: "", email: "", company: "", message: "" });
+        setErrors({});
+        setTouched({});
+      } else {
+        toast({
+          title: "Failed to send message",
+          description: "Please try again or email us directly.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or email us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -280,9 +328,9 @@ const Contact = () => {
                     )}
                   </div>
 
-                  <Button type="submit" variant="hero" size="lg" className="w-full">
-                    Send Message
-                    <Send className="ml-2 h-4 w-4" />
+                  <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {!isSubmitting && <Send className="ml-2 h-4 w-4" />}
                   </Button>
                 </div>
               </form>
