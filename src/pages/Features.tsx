@@ -164,7 +164,8 @@ const Features = () => {
         </div>
       </section>
 
-      {/* Advanced Features */}
+      {/* Advanced Features - commented out per content doc */}
+      {/*
       <section className="py-20 border-y border-border bg-card/30 relative overflow-hidden">
         <GlowOrb size={350} className="bottom-0 left-0 translate-y-1/2 -translate-x-1/2" />
         
@@ -203,6 +204,7 @@ const Features = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">

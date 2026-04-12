@@ -106,6 +106,12 @@
   * {
     @apply border-border;
   }
+
+  /* Better selection colors */
+  ::selection {
+    background: rgba(var(--color-primary-rgb), 0.3);
+    color: hsl(var(--foreground));
+  }
 }
 
 /* =======================================
@@ -169,7 +175,7 @@
       rgba(var(--color-primary-rgb), 1) 0%,
       rgba(var(--color-secondary-rgb), 1) 100%
     );
-}
+  }
 
   /* Glow helpers */
   .glow-primary {
@@ -191,6 +197,23 @@
     @apply bg-card/80 backdrop-blur-2xl border border-border;
   }
 
+  /* Enhanced glass with hover glow */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(var(--color-primary-rgb), 0.3);
+    box-shadow:
+      0 0 0 1px rgba(var(--color-primary-rgb), 0.1),
+      0 8px 32px -8px rgba(var(--color-secondary-rgb), 0.15);
+    transform: translateY(-2px);
+  }
+
   /* Floating & pulse animations */
   .floating { animation: float 6s ease-in-out infinite; }
   .floating-slow { animation: float 8s ease-in-out infinite; }
@@ -205,6 +228,23 @@
   @keyframes pulse-glow {
     0%,100% { box-shadow: 0 0 8px rgba(var(--color-primary-rgb),0.2), 0 0 4px rgba(var(--color-secondary-rgb),0.15); }
     50% { box-shadow: 0 0 15px rgba(var(--color-primary-rgb),0.3), 0 0 8px rgba(var(--color-secondary-rgb),0.2); }
+  }
+
+  /* Shimmer animation for badges/pills */
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(var(--color-primary-rgb), 0.08) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
   }
 
   /* Fade and scale animations */
@@ -229,6 +269,16 @@
     background-size: 60px 60px;
   }
 
+  /* Dot pattern background */
+  .dot-pattern {
+    background-image: radial-gradient(
+      circle,
+      hsl(0 0% 18% / 0.4) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
   /* Gradient borders */
   .gradient-border { position: relative; }
   .gradient-border::before {
@@ -242,5 +292,35 @@
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
+  }
+
+  /* Section separator - gradient line */
+  .section-separator {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(var(--color-primary-rgb), 0.4) 30%,
+      rgba(var(--color-secondary-rgb), 0.4) 70%,
+      transparent 100%
+    );
+  }
+
+  /* Numbered step circle */
+  .step-number {
+    @apply w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold;
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.3);
+  }
+
+  /* Connector line between steps */
+  .step-connector {
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      rgba(var(--color-primary-rgb), 0.4),
+      rgba(var(--color-secondary-rgb), 0.2)
+    );
   }
 }

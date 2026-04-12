@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, MessageSquare, Calendar } from "lucide-react";
+import { Mail, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -94,7 +94,7 @@ const Contact = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
+      <section className="relative pt-32 pb-10 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <GlowOrb size={400} className="top-0 right-1/4 -translate-y-1/2" />
 
@@ -104,7 +104,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               Let's Start a{" "}
               <span className="text-gradient">Conversation</span>
             </h1>
@@ -116,68 +116,57 @@ const Contact = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 lg:py-24">
+      <section className="py-8 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              className="glass-strong rounded-2xl p-8 h-full flex flex-col justify-between"
             >
-              <h2 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h2>
-              <p className="text-muted-foreground mb-8">
-                Our team is ready to answer your questions and help you get started with Saramsa.ai.
+              <div>
+                <h2 className="text-2xl font-bold text-foreground mb-2">Get in Touch</h2>
+                <p className="text-muted-foreground mb-8 text-sm leading-relaxed">
+                  Our team is ready to answer your questions and help you get started with Saramsa.ai. Reach out — we typically respond within a few hours.
+                </p>
+
+                <div className="space-y-4">
+                  <motion.a
+                    href="mailto:saramsa.aiventures@gmail.com"
+                    whileHover={{ x: 4 }}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-background/40 border border-border hover:border-primary/40 transition-all group"
+                  >
+                    <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <Mail className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground mb-0.5">Email us at</p>
+                      <p className="text-sm font-medium text-foreground">saramsa.aiventures@gmail.com</p>
+                    </div>
+                  </motion.a>
+
+                  <motion.a
+                    href="tel:+919789524825"
+                    whileHover={{ x: 4 }}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-background/40 border border-border hover:border-primary/40 transition-all group"
+                  >
+                    <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <Phone className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground mb-0.5">Call us on</p>
+                      <p className="text-sm font-medium text-foreground">+91-9789524825</p>
+                    </div>
+                  </motion.a>
+                </div>
+              </div>
+
+              <p className="mt-8 text-xs text-muted-foreground border-t border-border pt-6">
+                We're a small, focused team — you'll always speak to someone who knows the product.
               </p>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground">Email Us</h4>
-                    <p className="text-sm text-muted-foreground">hello@saramsa.ai</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground">Call Us</h4>
-                    <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground">Visit Us</h4>
-                    <p className="text-sm text-muted-foreground">
-                      123 Innovation Drive<br />
-                      San Francisco, CA 94107
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Actions */}
-              <div className="mt-12 grid grid-cols-2 gap-4">
-                <button className="glass rounded-xl p-4 text-left hover:border-primary/30 transition-all group">
-                  <MessageSquare className="w-6 h-6 text-primary mb-2 group-hover:scale-110 transition-transform" />
-                  <h4 className="font-medium text-foreground text-sm">Live Chat</h4>
-                  <p className="text-xs text-muted-foreground">Available 24/7</p>
-                </button>
-                <button className="glass rounded-xl p-4 text-left hover:border-primary/30 transition-all group">
-                  <Calendar className="w-6 h-6 text-primary mb-2 group-hover:scale-110 transition-transform" />
-                  <h4 className="font-medium text-foreground text-sm">Book a Demo</h4>
-                  <p className="text-xs text-muted-foreground">30-min session</p>
-                </button>
-              </div>
             </motion.div>
 
             {/* Contact Form */}
@@ -187,31 +176,58 @@ const Contact = () => {
               viewport={{ once: true }}
             >
               <form onSubmit={handleSubmit} className="glass-strong rounded-2xl p-8">
-                <h3 className="text-xl font-bold text-foreground mb-6">Send us a Message</h3>
+                <h3 className="text-xl font-bold text-foreground mb-1">Send us a Message</h3>
+                <p className="text-sm text-muted-foreground mb-6">Fill in the form and we'll be in touch shortly.</p>
                 
                 <div className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Full Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="John Doe"
-                      className={`bg-background/50 ${errors.name && touched.name ? 'border-destructive focus-visible:ring-destructive' : ''}`}
-                    />
-                    {errors.name && touched.name && (
-                      <motion.p 
-                        initial={{ opacity: 0, y: -5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="mt-1.5 text-sm font-medium text-destructive"
-                      >
-                        {errors.name}
-                      </motion.p>
-                    )}
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                        Full Name
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="John Doe"
+                        className={`bg-background/50 ${errors.name && touched.name ? 'border-destructive focus-visible:ring-destructive' : ''}`}
+                      />
+                      {errors.name && touched.name && (
+                        <motion.p 
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="mt-1.5 text-sm font-medium text-destructive"
+                        >
+                          {errors.name}
+                        </motion.p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
+                        Company
+                      </label>
+                      <Input
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="Your Company"
+                        className={`bg-background/50 ${errors.company && touched.company ? 'border-destructive focus-visible:ring-destructive' : ''}`}
+                      />
+                      {errors.company && touched.company && (
+                        <motion.p 
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="mt-1.5 text-sm font-medium text-destructive"
+                        >
+                          {errors.company}
+                        </motion.p>
+                      )}
+                    </div>
                   </div>
 
                   <div>
@@ -235,30 +251,6 @@ const Contact = () => {
                         className="mt-1.5 text-sm font-medium text-destructive"
                       >
                         {errors.email}
-                      </motion.p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
-                      Company
-                    </label>
-                    <Input
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="Your Company"
-                      className={`bg-background/50 ${errors.company && touched.company ? 'border-destructive focus-visible:ring-destructive' : ''}`}
-                    />
-                    {errors.company && touched.company && (
-                      <motion.p 
-                        initial={{ opacity: 0, y: -5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="mt-1.5 text-sm font-medium text-destructive"
-                      >
-                        {errors.company}
                       </motion.p>
                     )}
                   </div>

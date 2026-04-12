@@ -74,7 +74,7 @@ const Partnerships = () => {
       </section>
 
       {/* Partners Logos */}
-      <section className="py-16 border-y border-border bg-card/30">
+      {/* <section className="py-16 border-y border-border bg-card/30">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.p
             initial={{ opacity: 0 }}
@@ -99,9 +99,10 @@ const Partnerships = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Partner Benefits */}
+      {/* Partner Benefits - commented out per content doc */}
+      {/*
       <section className="py-24 lg:py-32 relative">
         <GlowOrb size={400} className="bottom-0 left-0 -translate-x-1/2 translate-y-1/2" />
         
@@ -140,6 +141,7 @@ const Partnerships = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* Partner Types */}
       <section className="py-24 lg:py-32 border-t border-border">
@@ -159,15 +161,15 @@ const Partnerships = () => {
             {[
               {
                 title: "Technology Partners",
-                description: "Integrate your product with Saramsa.ai and offer enhanced solutions to mutual customers.",
+                description: "Integrate your product with Saramsa.ai to offer enhanced, end-to-end solutions. Ideal for platforms in the feedback, CRM, or project management space.",
               },
               {
-                title: "Consulting Partners",
-                description: "Help enterprises implement and optimize their customer feedback strategies.",
+                title: "Implementation Partners",
+                description: "Help enterprises deploy and optimize Saramsa.ai within their product workflows. Earn revenue while delivering measurable outcomes for clients.",
               },
               {
                 title: "Referral Partners",
-                description: "Refer customers and earn competitive commissions on every successful deal.",
+                description: "Refer product teams and earn competitive commissions on every successful deal. Simple, low-effort, high-reward.",
               },
             ].map((type, i) => (
               <motion.div

@@ -33,7 +33,7 @@ const Demo = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
+      <section className="relative pt-32 pb-8 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-50" />
         <GlowOrb size={400} className="top-0 left-1/4 -translate-y-1/2" />
         <FloatingBrain size={100} className="top-40 right-[12%] hidden lg:block" delay={0.3} />
@@ -60,7 +60,7 @@ const Demo = () => {
       </section>
 
       {/* Demo Dashboard */}
-      <section className="py-16 lg:py-24">
+      <section className="py-8 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Feature Selector */}
@@ -161,7 +161,7 @@ const Demo = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-10 relative overflow-hidden">
         <GlowOrb size={500} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -175,17 +175,14 @@ const Demo = () => {
               <Play className="w-8 h-8 text-primary" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Ready for the Full Experience?
+              Want to See More?
             </h2>
             <p className="text-muted-foreground mb-8">
-              Start your free 14-day trial and see how Saramsa.ai can transform your feedback strategy.
+              Get in touch with our team to explore how Saramsa.ai can work for your product.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button variant="hero" size="lg" asChild>
-                <Link to="/contact">Start Free Trial</Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/contact">Talk to Sales</Link>
+                <Link to="/contact">Contact Us</Link>
               </Button>
             </div>
           </motion.div>
