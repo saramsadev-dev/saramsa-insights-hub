@@ -67,7 +67,7 @@ const About = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "ee023876-82da-44c6-9c81-68857637e16e",
+          access_key: "be527df5-46bf-4cc4-983d-5c0cde08bf10",
           from_name: "Saramsa.ai Contact Form",
           subject: `Contact from ${result.data.name}${result.data.company ? ` (${result.data.company})` : ""}`,
           name: result.data.name,
