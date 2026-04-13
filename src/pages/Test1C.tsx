@@ -216,7 +216,7 @@ const RotatingText = () => {
   }, [phrases]);
 
   return (
-    <div className="text-3xl md:text-5xl lg:text-6xl font-bold overflow-hidden h-[1.3em]">
+    <div className="text-3xl md:text-4xl lg:text-[3.5rem] font-bold overflow-hidden h-[1.3em]">
       <AnimatePresence mode="wait">
         <span key={index} className="inline-block">
           {phrases[index].split("").map((letter, i) => (
@@ -252,10 +252,26 @@ const Test1C = () => {
       <Navbar />
 
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 grid-pattern opacity-30" />
+        {/* Monter-style fine grid with radial mask */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "25px 25px",
+            maskImage: "radial-gradient(circle at center, black 8%, transparent 45%)",
+            WebkitMaskImage: "radial-gradient(circle at center, black 8%, transparent 45%)",
+            opacity: 0.7,
+            zIndex: 1,
+          }}
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-background/40 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-        <GlowOrb size={500} className="top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2" delay={0.2} />
-        <GlowOrb size={400} className="bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2" delay={0.5} />
+        <GlowOrb size={350} className="top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 opacity-40" delay={0.2} />
+        <GlowOrb size={280} className="bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 opacity-35" delay={0.5} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
@@ -274,7 +290,7 @@ const Test1C = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2 leading-tight tracking-tight"
+              className="text-3xl md:text-4xl lg:text-[3.5rem] font-bold text-foreground mb-2 leading-tight tracking-tight"
             >
               Transform feedback into
             </motion.h1>
