@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
@@ -245,7 +245,7 @@ const PipelineAnimation = () => {
 
 const RotatingText = () => {
   const phrases = useMemo(
-    () => ["Prioritized Features", "Build-Ready Stories", "Actionable Roadmaps"],
+    () => ["Raw Feedback", "Messy Reviews", "Support Tickets"],
     []
   );
   const [index, setIndex] = useState(0);
@@ -258,19 +258,19 @@ const RotatingText = () => {
   }, [phrases]);
 
   return (
-    <div className="text-3xl md:text-4xl lg:text-[3.5rem] font-bold overflow-hidden h-[1.3em]">
+    <span className="inline-flex overflow-hidden h-[1.2em]">
       <AnimatePresence mode="wait">
-        <span key={index} className="inline-block">
+        <motion.span key={index} className="inline-flex">
           {phrases[index].split("").map((letter, i) => (
             <motion.span
               key={`${index}-${i}`}
-              initial={{ y: "100%", opacity: 0 }}
+              initial={{ y: "110%", opacity: 0 }}
               animate={{ y: "0%", opacity: 1 }}
-              exit={{ y: "-100%", opacity: 0 }}
+              exit={{ y: "-110%", opacity: 0 }}
               transition={{
-                duration: 0.5,
-                ease: [0.42, 0, 0.58, 1],
-                delay: i * 0.02,
+                duration: 0.45,
+                ease: [0.22, 1, 0.36, 1],
+                delay: i * 0.025,
               }}
               className="text-gradient"
               style={{ display: "inline-block" }}
@@ -278,9 +278,9 @@ const RotatingText = () => {
               {letter === " " ? "\u00A0" : letter}
             </motion.span>
           ))}
-        </span>
+        </motion.span>
       </AnimatePresence>
-    </div>
+    </span>
   );
 };
 
@@ -293,7 +293,7 @@ const Test1A = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-20">
         {/* Monter-style fine grid with radial mask */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -316,46 +316,50 @@ const Test1A = () => {
         <GlowOrb size={280} className="bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 opacity-35" delay={0.5} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
-            {/* Pipeline animation */}
+          <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+            {/* 1. Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-primary/20 text-xs md:text-sm text-primary font-medium mb-10 shimmer"
+            >
+              <Zap className="w-3.5 h-3.5" />
+              Enterprise-Grade Product Management Agent
+            </motion.div>
+
+            {/* 2. Pipeline animation */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mb-12"
             >
               <PipelineAnimation />
             </motion.div>
 
-            {/* Static line */}
+            {/* 3. Heading — single line with rotating text */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-[3.5rem] font-bold text-foreground mb-2 leading-tight tracking-tight"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-2xl md:text-3xl lg:text-[2.75rem] font-bold text-foreground mb-8 leading-[1.15] tracking-tight"
             >
-              Transform feedback into
+              <RotatingText />{" "}
+              <span className="text-foreground">to Roadmap in Seconds</span>
             </motion.h1>
 
-            {/* Rotating text */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-8"
-            >
-              <RotatingText />
-            </motion.div>
-
+            {/* 4. Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
+              className="text-base md:text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed italic font-light"
             >
-              Saramsa.ai processes raw customer feedback and turns it into
-              prioritized features and build-ready user stories — in seconds.
+              Turn messy feedback into prioritized features and build-ready user stories with Saramsa.ai
             </motion.p>
 
+            {/* 5. CTA */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
