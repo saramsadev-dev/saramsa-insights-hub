@@ -32,6 +32,7 @@ const buttonVariants = cva(
 
         glass:
           "glass text-foreground hover:bg-card/70 hover:border-primary/30",
+
       },
       size: {
         default: "h-10 px-5 py-2",

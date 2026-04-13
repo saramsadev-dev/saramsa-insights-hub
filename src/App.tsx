@@ -9,6 +9,9 @@ import Integrations from "./pages/Integrations";
 import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 import NotFound from "./pages/NotFound";
+import Test1A from "./pages/Test1A";
+import Test1B from "./pages/Test1B";
+import Test1C from "./pages/Test1C";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,9 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/integrations" element={<Integrations />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/test-1a" element={<Test1A />} />
+          <Route path="/test-1b" element={<Test1B />} />
+          <Route path="/test-1c" element={<Test1C />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

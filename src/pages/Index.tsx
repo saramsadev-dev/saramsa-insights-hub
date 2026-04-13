@@ -87,25 +87,25 @@ const Index = () => {
         <FloatingNodes size={60} className="bottom-1/4 right-[18%] hidden lg:block" delay={0.7} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-5xl mx-auto text-center">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-primary/20 text-sm text-primary font-medium mb-8 shimmer"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass border border-primary/20 text-base md:text-lg text-primary font-medium mb-8 shimmer"
             >
-              <Zap className="w-3.5 h-3.5" />
-              AI-Powered Feedback Intelligence
+              <Zap className="w-4 h-4 md:w-5 md:h-5" />
+              Enterprise-Grade Product Management Agent
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight tracking-tight"
+              className="text-3xl md:text-4xl lg:text-[3.5rem] font-bold text-foreground mb-6 leading-tight tracking-tight"
             >
-              <span className="text-gradient"> Raw Feedback to Roadmap </span>
+              <span className="text-gradient">Raw Feedback to Roadmap </span>
               <span className="text-foreground">in Seconds</span>
             </motion.h1>
             <motion.p
@@ -124,16 +124,16 @@ const Index = () => {
             >
               <Button variant="hero" size="xl" asChild>
                 <Link to="/about#contact">
-                  Contact Sales
+                 Book a demo
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
-              <Button variant="glass" size="xl" asChild>
+              {/* <Button variant="glass" size="xl" asChild>
                 <Link to="/#demo">
                   <Play className="mr-2 w-4 h-4" />
                   Watch Demo
                 </Link>
-              </Button>
+              </Button> */}
             </motion.div>
           </div>
         </div>

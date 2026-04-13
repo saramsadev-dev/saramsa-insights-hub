@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/saramsa-logo.png";
 
@@ -56,9 +56,23 @@ export const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="hero" size="sm" asChild>
-              <Link to="/about#contact">Contact Us</Link>
-            </Button>
+            <Link
+              to="/about#contact"
+              className="inline-flex items-center justify-center rounded-lg bg-gradient-primary-btn px-4 py-1.5 text-sm font-semibold text-white hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
+            >
+              Contact Us
+            </Link>
+            <a
+              href="https://saramsa-ai.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative inline-flex items-center justify-center rounded-lg p-[2px] bg-gradient-primary-btn hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
+            >
+              <span className="inline-flex items-center gap-1.5 justify-center rounded-md bg-background px-4 py-1.5 text-sm font-semibold text-foreground">
+                Login
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -102,10 +116,26 @@ export const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
-              <div className="mt-4 pt-4 border-t border-border/50">
-                <Button variant="hero" className="w-full" asChild>
-                  <Link to="/about#contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
-                </Button>
+              <div className="mt-4 pt-4 border-t border-border/50 flex flex-col gap-3">
+                <Link
+                  to="/about#contact"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center w-full rounded-lg bg-gradient-primary-btn px-5 py-2.5 text-sm font-semibold text-white hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
+                >
+                  Contact Us
+                </Link>
+                <a
+                  href="https://saramsa-ai.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  className="relative flex items-center justify-center w-full rounded-lg p-[2px] bg-gradient-primary-btn hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
+                >
+                  <span className="flex items-center gap-1.5 justify-center w-full rounded-md bg-background px-5 py-2.5 text-sm font-semibold text-foreground">
+                    Login
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </a>
               </div>
             </div>
           </motion.div>
