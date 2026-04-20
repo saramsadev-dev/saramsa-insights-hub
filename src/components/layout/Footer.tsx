@@ -5,18 +5,17 @@ const footerLinks = {
   product: [
     { name: "Features", path: "/#features" },
     { name: "Demo", path: "/#demo" },
-    { name: "Integrations", path: "/integrations" },
-    { name: "Pricing", path: "/pricing" },
+    { name: "Integrations", path: "/integrations#output-tracking" },
+    { name: "Pricing", path: "/pricing#plans" },
   ],
   company: [
     { name: "About", path: "/about" },
-    { name: "Partnerships", path: "/integrations" },
+    { name: "Partnerships", path: "/integrations#partnerships" },
     { name: "Contact", path: "/about#contact" },
   ],
   legal: [
-    { name: "Privacy Policy", path: "/" },
-    { name: "Terms of Service", path: "/" },
-    { name: "Cookie Policy", path: "/" },
+    { name: "Privacy Policy", path: "/about" },
+    { name: "Terms of Service", path: "/about" },
   ],
 };
 

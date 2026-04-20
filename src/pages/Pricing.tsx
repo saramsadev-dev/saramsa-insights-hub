@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -107,28 +107,43 @@ const Pricing = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-36 lg:pt-44 pb-10">
-        <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-        <GlowOrb
-          size={400}
-          className="top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      <section className="relative pt-36 lg:pt-44 pb-10 overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px)
+            `,
+            backgroundSize: "25px 25px",
+            maskImage: "radial-gradient(circle at center, black 5%, transparent 40%)",
+            WebkitMaskImage: "radial-gradient(circle at center, black 5%, transparent 40%)",
+            opacity: 0.4,
+          }}
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        <GlowOrb size={400} className="top-0 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <GlowOrb size={300} className="bottom-1/3 right-[8%] opacity-25" delay={0.4} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-3xl mx-auto"
+            className="text-center max-w-4xl mx-auto"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full glass text-xs text-primary font-semibold uppercase tracking-widest mb-6">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass border border-primary/20 text-base md:text-lg text-primary font-medium mb-8 shimmer"
+            >
               Pricing Plans
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight">
+            </motion.span>
+            <h1 className="text-3xl md:text-4xl lg:text-[3.5rem] font-bold text-foreground mb-6 leading-tight tracking-tight">
               Simple, Transparent{" "}
               <span className="text-gradient">Pricing</span>
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base md:text-lg text-muted-foreground italic font-light">
               Choose the plan that fits your needs. All plans include a 14-day free trial.
             </p>
           </motion.div>
@@ -136,8 +151,10 @@ const Pricing = () => {
       </section>
 
       {/* Pricing Cards */}
-      <section className="relative pt-16 lg:pt-20">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section id="plans" className="relative pt-16 lg:pt-20 overflow-hidden">
+        <GlowOrb size={250} className="top-[20%] left-[5%] opacity-20 hidden md:block" delay={0.3} />
+        <GlowOrb size={200} className="bottom-[10%] right-[8%] opacity-15 hidden md:block" delay={0.6} />
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
             {plans.map((plan, index) => (
               <motion.div
@@ -146,7 +163,7 @@ const Pricing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="relative"
+                className="relative group"
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
@@ -157,58 +174,72 @@ const Pricing = () => {
                   </div>
                 )}
 
-                <div className={`
-                  h-full rounded-2xl p-7
-                  transition-all duration-400 ease-out
-                  hover:shadow-[0_0_40px_-10px_rgba(var(--color-secondary-rgb),0.3)]
-                  hover:-translate-y-1
-                  ${
-                    plan.popular
-                      ? "bg-card/80 backdrop-blur-xl border-2 border-primary/40"
-                      : "glass-card"
-                  }
-                `}>
-                  <div className="mb-6">
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      {plan.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {plan.description}
-                    </p>
-                  </div>
+                <div className="relative rounded-2xl overflow-hidden h-full">
+                  {plan.popular ? (
+                    <div className="absolute inset-0 rounded-2xl p-[2px]" style={{ background: "var(--gradient-primary)", opacity: 0.6 }}>
+                      <div className="w-full h-full rounded-2xl bg-card" />
+                    </div>
+                  ) : (
+                    <div className="absolute inset-0 rounded-2xl p-[1px] opacity-0 group-hover:opacity-40 transition-opacity duration-500" style={{ background: "var(--gradient-primary)" }}>
+                      <div className="w-full h-full rounded-2xl bg-card" />
+                    </div>
+                  )}
+                  <div className={`
+                    relative h-full rounded-2xl p-7
+                    transition-all duration-400 ease-out
+                    hover:shadow-[0_0_40px_-10px_rgba(var(--color-secondary-rgb),0.3)]
+                    hover:-translate-y-1
+                    ${plan.popular ? "glass-card" : "glass-card"}
+                  `}>
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        {plan.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed italic font-light">
+                        {plan.description}
+                      </p>
+                    </div>
 
-                  <div className="mb-7 pb-7 border-b border-border/40">
-                    <span className="text-4xl font-bold text-foreground">
-                      {plan.price}
-                    </span>
-                    <span className="text-muted-foreground text-sm">
-                      {plan.period}
-                    </span>
-                  </div>
+                    <div className="mb-7 pb-7 border-b border-white/[0.06]">
+                      <span className="text-4xl font-bold text-foreground">
+                        {plan.price}
+                      </span>
+                      <span className="text-muted-foreground text-sm">
+                        {plan.period}
+                      </span>
+                    </div>
 
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                          <Check className="w-3 h-3 text-primary" />
-                        </div>
-                        <span className="text-sm text-muted-foreground">
-                          {feature}
+                    <ul className="space-y-3 mb-8">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-3">
+                          <div
+                            className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                            style={{ background: "linear-gradient(135deg, rgba(var(--color-primary-rgb),0.15), rgba(var(--color-secondary-rgb),0.1))" }}
+                          >
+                            <Check className="w-3 h-3 text-primary" />
+                          </div>
+                          <span className="text-sm text-muted-foreground">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {plan.popular ? (
+                      <Button variant="hero" className="w-full" size="lg" asChild>
+                        <Link to="/about#contact">{plan.cta}</Link>
+                      </Button>
+                    ) : (
+                      <Link
+                        to="/about#contact"
+                        className="flex items-center justify-center w-full rounded-lg p-[2px] bg-gradient-primary-btn hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
+                      >
+                        <span className="flex items-center justify-center w-full rounded-md bg-background px-5 py-2.5 text-sm font-semibold text-foreground">
+                          {plan.cta}
                         </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    variant={plan.popular ? "hero" : "outline"}
-                    className="w-full"
-                    size="lg"
-                    asChild
-                  >
-                    <Link to="/about#contact">
-                      {plan.cta}
-                    </Link>
-                  </Button>
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -217,18 +248,34 @@ const Pricing = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 lg:py-32">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section id="faq" className="py-24 lg:py-32 relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px)
+            `,
+            backgroundSize: "25px 25px",
+            maskImage: "radial-gradient(circle at center, black 5%, transparent 40%)",
+            WebkitMaskImage: "radial-gradient(circle at center, black 5%, transparent 40%)",
+            opacity: 0.3,
+          }}
+        />
+        <div className="absolute inset-0 bg-background/40 pointer-events-none" />
+        <GlowOrb size={250} className="top-[15%] right-[12%] opacity-20 hidden md:block" delay={0.4} />
+        <GlowOrb size={200} className="bottom-[20%] left-[10%] opacity-25 hidden md:block" delay={0.7} />
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full glass text-xs text-primary font-semibold uppercase tracking-widest mb-4">
+            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass border border-primary/20 text-base md:text-lg text-primary font-medium mb-4">
               FAQ
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 tracking-tight">
               Frequently Asked <span className="text-gradient">Questions</span>
             </h2>
           </motion.div>
@@ -241,17 +288,38 @@ const Pricing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="glass-card rounded-xl p-6"
+                className="group relative rounded-xl overflow-hidden"
               >
-                <h4 className="font-semibold text-foreground mb-2">
-                  {faq.q}
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {faq.a}
-                </p>
+                <div className="absolute inset-0 rounded-xl p-[1px] opacity-0 group-hover:opacity-30 transition-opacity duration-500" style={{ background: "var(--gradient-primary)" }}>
+                  <div className="w-full h-full rounded-xl bg-card" />
+                </div>
+                <div className="relative glass-card rounded-xl p-6">
+                  <h4 className="font-semibold text-foreground mb-2">
+                    {faq.q}
+                  </h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed italic font-light">
+                    {faq.a}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <p className="text-muted-foreground mb-6 italic font-light">Still have questions? We'd love to help.</p>
+            <Button variant="hero" size="lg" className="md:h-12 md:px-8" asChild>
+              <Link to="/about#contact">
+                Talk to Us
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </section>
 

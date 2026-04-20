@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Phone, Send } from "lucide-react";
+import { Mail, Phone, Send, Sparkles, Target, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingBubble } from "@/components/3d/FloatingBubble";
-import { FloatingBrain } from "@/components/3d/FloatingBrain";
 import { GlowOrb } from "@/components/3d/GlowOrb";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
@@ -38,6 +36,7 @@ const About = () => {
   const [formData, setFormData] = useState({ name: "", email: "", company: "", message: "" });
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateField = (name: string, value: string) => {
     try {
@@ -47,8 +46,6 @@ const About = () => {
       if (error instanceof z.ZodError) setErrors(prev => ({ ...prev, [name]: error.errors[0]?.message }));
     }
   };
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,7 +73,6 @@ const About = () => {
           message: result.data.message,
         }),
       });
-
       const data = await response.json();
       if (data.success) {
         toast({ title: "Message sent!", description: "We'll get back to you within 24 hours." });
@@ -108,165 +104,181 @@ const About = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* About Hero */}
-      <section className="relative pt-36 lg:pt-44 pb-20 lg:pb-28 overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-        <GlowOrb size={450} className="top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2" delay={0.2} />
-        <FloatingBubble size={70} className="top-40 right-[12%] hidden lg:block" delay={0.3} />
-        <FloatingBrain size={80} className="bottom-20 left-[12%] hidden lg:block" delay={0.7} />
+      {/* Hero */}
+      <section className="relative pt-36 lg:pt-44 pb-16 lg:pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/3 via-transparent to-background" />
+        <GlowOrb size={450} className="absolute top-1/3 right-[10%] opacity-30" delay={0.2} />
+        <GlowOrb size={350} className="absolute top-1/2 left-[5%] opacity-20" delay={0.5} />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full glass text-xs text-primary font-semibold uppercase tracking-widest mb-6">
-              Clarity. Insight. Action.
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight">
-              What Does{" "}
-              <span className="text-gradient">Saramsa</span> Mean?
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass border border-primary/20 text-base md:text-lg text-primary font-medium mb-8 shimmer"
+            >
+              About Saramsa
+            </motion.span>
+            <h1 className="text-3xl md:text-4xl lg:text-[3.5rem] font-bold text-foreground mb-6 leading-tight tracking-tight">
+              The <span className="text-gradient">Essence</span> of Feedback
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Saramsa means <span className="text-foreground font-medium">essence</span> — the insight distilled from complexity.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Leveraging the power of AI, we do exactly that with all your feedback, insights, and action items — at the click of a button, in one space. Saramsa.ai analyzes feedback at scale, prioritizes what matters, and generates ready-to-build user stories delivered directly into your project management tools.
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed italic font-light max-w-xl mx-auto">
+              Saramsa means <span className="text-foreground font-medium not-italic">essence</span> — the insight distilled from complexity. We built Saramsa.ai to do exactly that with customer feedback, at scale.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Join Our Journey CTA */}
-      <section className="py-20 lg:py-24 relative overflow-hidden">
-        <GlowOrb size={400} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      {/* What We Do */}
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-4 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
+            className="max-w-3xl mx-auto text-center"
           >
-            <div className="gradient-border rounded-3xl">
-              <div className="bg-card/60 backdrop-blur-xl rounded-3xl p-8 md:p-12 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 tracking-tight">Join Our Journey</h2>
-                <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-                  We're always looking for talented people who share our passion for customer understanding.
-                </p>
-                <Button variant="hero" size="lg" asChild>
-                  <a href="#contact">
-                    Get in Touch
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
-              </div>
+            <p className="text-xs text-primary font-medium uppercase tracking-widest mb-2">What We Do</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight mb-6">
+              From Noise to Clarity
+            </h2>
+            <div className="space-y-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+              <p>
+                Product teams drown in feedback — support tickets, surveys, app reviews, sales calls. The signal is there, but it's buried under volume and noise.
+              </p>
+              <p>
+                Saramsa.ai analyzes feedback at scale, prioritizes what matters, and generates ready-to-build user stories delivered directly into your project management tools. One click. One space. Complete clarity.
+              </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 lg:py-28 relative">
-        <div className="absolute inset-0 dot-pattern opacity-15" />
-        <div className="absolute inset-0 bg-gradient-to-b from-card/20 via-card/40 to-card/20" />
+      {/* Pillars */}
+      <section className="py-16 lg:py-20 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-card/10 via-card/20 to-card/10" />
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {[
+              { icon: Sparkles, title: "Essence", desc: "Distilling clarity from the noise of thousands of customer voices." },
+              { icon: Target, title: "Precision", desc: "AI that prioritizes what actually moves the needle for your product." },
+              { icon: Lightbulb, title: "Action", desc: "Build-ready user stories delivered where your team already works." },
+            ].map((p, i) => (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="rounded-2xl p-6 border border-white/[0.06] bg-card/30 backdrop-blur-sm text-center"
+              >
+                <div className="w-10 h-10 rounded-xl mx-auto mb-4 flex items-center justify-center border border-white/[0.08]" style={{ background: "linear-gradient(135deg, rgba(var(--color-primary-rgb),0.12), rgba(var(--color-secondary-rgb),0.08))" }}>
+                  <p.icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="font-semibold text-foreground mb-1.5">{p.title}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA — removed: links to same page contact section, redundant */}
+
+      {/* Contact */}
+      <section id="contact" className="py-16 lg:py-20 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-card/10 via-card/20 to-card/10" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-14"
+            className="mb-10 max-w-3xl mx-auto text-center"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full glass text-xs text-primary font-semibold uppercase tracking-widest mb-4">
-              Reach Out
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 tracking-tight">
-              Let's Start a <span className="text-gradient">Conversation</span>
+            <p className="text-xs text-primary font-medium uppercase tracking-widest mb-2">Contact</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight mb-2">
+              Let's Start a Conversation
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Have questions about Saramsa.ai? We're here to help you transform your customer feedback strategy.
+            <p className="text-sm text-muted-foreground">
+              Have questions about Saramsa.ai? Fill the form or reach out directly.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto items-start">
+          <div className="grid lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
             {/* Contact Info */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-card/60 backdrop-blur-xl border border-border/60 rounded-2xl p-8 h-full flex flex-col justify-between"
+              className="lg:col-span-2 space-y-4"
             >
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">Get in Touch</h3>
-                <p className="text-muted-foreground mb-8 text-sm leading-relaxed">
-                  Our team is ready to answer your questions and help you get started with Saramsa.ai. Reach out — we typically respond within a few hours.
-                </p>
-                <div className="space-y-3">
-                  <motion.a
-                    href="mailto:saramsa.aiventures@gmail.com"
-                    whileHover={{ x: 4 }}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-background/40 border border-border/40 hover:border-primary/40 transition-all duration-300 group"
-                  >
-                    <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:border-primary/25 transition-all">
-                      <Mail className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground mb-0.5">Email us at</p>
-                      <p className="text-sm font-medium text-foreground">saramsa.aiventures@gmail.com</p>
-                    </div>
-                  </motion.a>
-                  <motion.a
-                    href="tel:+919789524825"
-                    whileHover={{ x: 4 }}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-background/40 border border-border/40 hover:border-primary/40 transition-all duration-300 group"
-                  >
-                    <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:border-primary/25 transition-all">
-                      <Phone className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-muted-foreground mb-0.5">Call us on</p>
-                      <p className="text-sm font-medium text-foreground">+91-9789524825</p>
-                    </div>
-                  </motion.a>
+              <a
+                href="mailto:saramsa.aiventures@gmail.com"
+                className="flex items-start gap-4 p-4 rounded-2xl border border-white/[0.06] bg-card/30 backdrop-blur-sm hover:border-white/[0.12] hover:bg-card/50 transition-all duration-300 group"
+              >
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white/[0.06] group-hover:bg-primary/10 transition-colors">
+                  <Mail className="w-5 h-5 text-primary" />
                 </div>
-              </div>
-              <p className="mt-8 text-xs text-muted-foreground border-t border-border/40 pt-6">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-0.5">Email</p>
+                  <p className="text-sm font-medium text-foreground">saramsa.aiventures@gmail.com</p>
+                </div>
+              </a>
+
+              <a
+                href="tel:+919789524825"
+                className="flex items-start gap-4 p-4 rounded-2xl border border-white/[0.06] bg-card/30 backdrop-blur-sm hover:border-white/[0.12] hover:bg-card/50 transition-all duration-300 group"
+              >
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white/[0.06] group-hover:bg-primary/10 transition-colors">
+                  <Phone className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-0.5">Phone</p>
+                  <p className="text-sm font-medium text-foreground">+91-9789524825</p>
+                </div>
+              </a>
+
+              <p className="text-xs text-muted-foreground pt-2 italic">
                 We're a small, focused team — you'll always speak to someone who knows the product.
               </p>
             </motion.div>
 
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="lg:col-span-3"
             >
-              <form onSubmit={handleSubmit} className="bg-card/60 backdrop-blur-xl border border-border/60 rounded-2xl p-8">
-                <h3 className="text-xl font-bold text-foreground mb-1">Send us a Message</h3>
-                <p className="text-sm text-muted-foreground mb-6">Fill in the form and we'll be in touch shortly.</p>
+              <form onSubmit={handleSubmit} className="rounded-2xl p-6 md:p-8 border border-white/[0.06] bg-card/30 backdrop-blur-sm">
                 <div className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Full Name</label>
-                      <Input id="name" name="name" value={formData.name} onChange={handleChange} onBlur={handleBlur} placeholder="John Doe" className={`bg-background/50 border-border/60 focus:border-primary/50 ${errors.name && touched.name ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
+                      <Input id="name" name="name" value={formData.name} onChange={handleChange} onBlur={handleBlur} placeholder="John Doe" className={`bg-background/50 border-white/[0.08] focus:border-primary/50 ${errors.name && touched.name ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
                       {errors.name && touched.name && <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="mt-1.5 text-sm font-medium text-destructive">{errors.name}</motion.p>}
                     </div>
                     <div>
                       <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">Company</label>
-                      <Input id="company" name="company" value={formData.company} onChange={handleChange} onBlur={handleBlur} placeholder="Your Company" className={`bg-background/50 border-border/60 focus:border-primary/50 ${errors.company && touched.company ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
+                      <Input id="company" name="company" value={formData.company} onChange={handleChange} onBlur={handleBlur} placeholder="Your Company" className={`bg-background/50 border-white/[0.08] focus:border-primary/50 ${errors.company && touched.company ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
                       {errors.company && touched.company && <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="mt-1.5 text-sm font-medium text-destructive">{errors.company}</motion.p>}
                     </div>
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">Work Email</label>
-                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} onBlur={handleBlur} placeholder="john@company.com" className={`bg-background/50 border-border/60 focus:border-primary/50 ${errors.email && touched.email ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
+                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} onBlur={handleBlur} placeholder="john@company.com" className={`bg-background/50 border-white/[0.08] focus:border-primary/50 ${errors.email && touched.email ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
                     {errors.email && touched.email && <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="mt-1.5 text-sm font-medium text-destructive">{errors.email}</motion.p>}
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">Message</label>
-                    <Textarea id="message" name="message" value={formData.message} onChange={handleChange} onBlur={handleBlur} placeholder="Tell us about your needs..." rows={5} className={`bg-background/50 border-border/60 focus:border-primary/50 ${errors.message && touched.message ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
+                    <Textarea id="message" name="message" value={formData.message} onChange={handleChange} onBlur={handleBlur} placeholder="Tell us about your needs..." rows={4} className={`bg-background/50 border-white/[0.08] focus:border-primary/50 ${errors.message && touched.message ? 'border-destructive focus-visible:ring-destructive' : ''}`} />
                     {errors.message && touched.message && <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="mt-1.5 text-sm font-medium text-destructive">{errors.message}</motion.p>}
                   </div>
                   <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
