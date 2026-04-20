@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useCallback } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,19 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const scrollToContact = useCallback(() => {
+    setIsOpen(false);
+    if (location.pathname === "/about") {
+      const el = document.getElementById("contact");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+    }
+    navigate("/about#contact");
+  }, [location.pathname, navigate]);
 
   return (
     <motion.nav
@@ -56,12 +69,12 @@ export const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              to="/about#contact"
+            <button
+              onClick={scrollToContact}
               className="inline-flex items-center justify-center rounded-lg bg-gradient-primary-btn px-4 py-1.5 text-sm font-semibold text-white hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
             >
               Contact Us
-            </Link>
+            </button>
             <a
               href="https://saramsa-ai.vercel.app/"
               target="_blank"
@@ -117,13 +130,12 @@ export const Navbar = () => {
                 </motion.div>
               ))}
               <div className="mt-4 pt-4 border-t border-border/50 flex flex-col gap-3">
-                <Link
-                  to="/about#contact"
-                  onClick={() => setIsOpen(false)}
+                <button
+                  onClick={scrollToContact}
                   className="flex items-center justify-center w-full rounded-lg bg-gradient-primary-btn px-5 py-2.5 text-sm font-semibold text-white hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
                 >
                   Contact Us
-                </Link>
+                </button>
                 <a
                   href="https://saramsa-ai.vercel.app/"
                   target="_blank"
