@@ -1,6 +1,7 @@
+import { Fragment } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Check, Sparkles, ArrowRight } from "lucide-react";
+import { Check, X, Sparkles, ArrowRight, Users, MessageSquare, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -9,51 +10,65 @@ import { GlowOrb } from "@/components/3d/GlowOrb";
 const plans = [
   {
     name: "Starter",
-    description: "Perfect for small teams getting started with feedback analysis",
-    price: "$29",
+    description: "For small teams getting started with AI-powered feedback analysis",
+    price: "$19",
     period: "/month",
+    meta: [
+      { icon: Users, label: "1 user" },
+      { icon: MessageSquare, label: "1,000 feedback/mo" },
+      { icon: Zap, label: "10,000 AI credits" },
+    ],
     features: [
-      "Up to 5,000 feedback entries/month",
-      "Basic sentiment analysis",
-      "3 integrations",
+      "Basic feedback summarization",
+      "Auto-tagging & deduplication",
+      "Basic theme & sentiment analysis",
+      "Basic user story generation",
+      "Up to 3 integrations",
       "Email support",
-      "7-day data retention",
-      "Basic reporting",
     ],
     cta: "Contact Us",
     popular: false,
   },
   {
-    name: "Professional",
-    description: "For growing teams that need advanced insights",
-    price: "$299",
+    name: "Growth",
+    description: "The sweet spot for scaling product teams",
+    price: "$90",
     period: "/month",
+    meta: [
+      { icon: Users, label: "5 users" },
+      { icon: MessageSquare, label: "10,000 feedback/mo" },
+      { icon: Zap, label: "75,000 AI credits" },
+    ],
     features: [
-      "Up to 50,000 feedback entries/month",
-      "Advanced AI analysis",
-      "Unlimited integrations",
-      "Priority support",
-      "90-day data retention",
-      "Custom dashboards",
-      "API access",
-      "Team collaboration",
+      "Advanced summarization & analysis",
+      "Full theme clustering & sentiment",
+      "User story generation",
+      "RICE-style prioritization",
+      "Basic roadmap & trend analysis",
+      "Up to 10 integrations",
+      "Priority email support",
     ],
     cta: "Contact Us",
     popular: true,
   },
   {
-    name: "Token-Based",
-    description: "Pay only for what you use — ideal for variable workloads",
-    price: "Usage",
-    period: " based",
+    name: "Pro",
+    description: "Deep insights and automation for high-volume teams",
+    price: "$299",
+    period: "/month",
+    meta: [
+      { icon: Users, label: "10 users" },
+      { icon: MessageSquare, label: "50,000 feedback/mo" },
+      { icon: Zap, label: "3,00,000 AI credits" },
+    ],
     features: [
-      "Pay per feedback entry processed",
-      "Full AI analysis suite",
-      "All integrations included",
-      "No monthly commitment",
-      "Unlimited data retention",
-      "Priority support",
-      "API access",
+      "Advanced AI across every workflow",
+      "Advanced scoring & prioritization",
+      "Impact estimation & advanced roadmap",
+      "Role-based access & audit logs",
+      "Advanced team collaboration",
+      "Custom integrations",
+      "Chat + email support",
     ],
     cta: "Contact Us",
     popular: false,
@@ -61,45 +76,106 @@ const plans = [
   {
     name: "Enterprise",
     description: "Custom solutions for large organizations",
-    price: "Custom",
+    price: "Contact us",
     period: "",
-    features: [
-      "Unlimited feedback entries",
-      "Custom AI models",
-      "Dedicated success manager",
-      "24/7 phone support",
-      "Unlimited data retention",
-      "White-label options",
-      "SSO & advanced security",
-      "On-premise deployment",
+    meta: [
+      { icon: Users, label: "25+ users" },
+      { icon: MessageSquare, label: "Custom feedback limit" },
+      { icon: Zap, label: "Custom AI credits" },
     ],
-    cta: "Contact Sales",
+    features: [
+      "Custom-tuned AI models",
+      "Predictive trend analysis",
+      "Strategic AI roadmap",
+      "Custom workflows & models",
+      "Enterprise-grade collaboration",
+      "Unlimited batch analysis",
+      "Dedicated relationship manager",
+    ],
+    cta: "Contact Us",
     popular: false,
   },
 ];
 
+type Cell = string | boolean;
+
+const comparisonGroups: { title: string; rows: { feature: string; values: [Cell, Cell, Cell, Cell] }[] }[] = [
+  {
+    title: "AI & Insights",
+    rows: [
+      { feature: "Feedback summarization", values: ["Basic", "Advanced", "Advanced", "Custom tuned"] },
+      { feature: "Auto-tagging / classification", values: ["Basic", true, true, true] },
+      { feature: "Deduplication (similar feedback)", values: ["Basic", true, true, true] },
+      { feature: "Theme / cluster detection", values: ["Basic", true, "Advanced", "Custom"] },
+      { feature: "Sentiment analysis", values: ["Basic", true, "Advanced", "Custom"] },
+      { feature: "User story generation", values: ["Basic", true, "Full", "Custom workflows"] },
+      { feature: "Re-run / batch analysis", values: [true, true, "Full", "Unlimited"] },
+    ],
+  },
+  {
+    title: "Product Management",
+    rows: [
+      { feature: "Insights dashboard", values: ["Basic", "Standard", "Advanced", "Custom"] },
+      { feature: "Prioritization (RICE-style)", values: [false, true, "Advanced scoring", "Custom models"] },
+      { feature: "Feedback → feature mapping", values: [true, true, true, true] },
+      { feature: "Trend analysis", values: [false, "Basic", "Advanced", "Predictive"] },
+      { feature: "Impact estimation", values: [false, false, true, true] },
+      { feature: "Roadmap view", values: [false, "Basic", "Advanced", "Strategic AI"] },
+      { feature: "Integrations / projects", values: ["3", "10", "Custom", "Custom"] },
+      { feature: "Team collaboration", values: [false, "Basic", "Advanced", "Enterprise-grade"] },
+      { feature: "Role-based access", values: [false, false, true, true] },
+      { feature: "Audit logs", values: ["On request", "Basic", true, true] },
+      { feature: "Support", values: ["Email", "Priority email", "Chat + email", "Dedicated RM"] },
+    ],
+  },
+];
+
+const credits = [
+  { action: "Process 1 feedback (summarize + classify)", cost: "10 credits", usd: "~$0.002" },
+  { action: "Cluster 100 feedback items", cost: "50 credits", usd: "~$0.009" },
+  { action: "Generate 1 user story", cost: "25 credits", usd: "~$0.004" },
+  { action: "Re-run full analysis (bulk)", cost: "100–500 credits", usd: "$0.02–$0.08" },
+];
+
 const faqs = [
   {
-    q: "What's the difference between fixed and token-based pricing?",
-    a: "Fixed plans give you a set monthly allowance of feedback entries at a predictable cost. Token-based pricing lets you pay per entry processed — great if your volume fluctuates month to month.",
+    q: "How do AI credits work?",
+    a: "Each plan includes a monthly pool of AI credits. Different actions consume different amounts — for example, processing one piece of feedback uses ~10 credits, generating a user story uses ~25. Unused credits don't carry over to the next month.",
+  },
+  {
+    q: "What happens if I run out of credits or hit my feedback limit?",
+    a: "We'll notify you as you approach your limit. You can purchase extended credits on-demand, upgrade your plan, or wait until your next billing cycle — there's no service interruption for the rest of your workspace.",
   },
   {
     q: "Can I switch between plans?",
-    a: "Yes, you can upgrade, downgrade, or switch to token-based at any time. Changes take effect at the start of your next billing cycle.",
-  },
-  {
-    q: "What happens if I exceed my monthly limit on a fixed plan?",
-    a: "We'll notify you before you hit the limit. You can upgrade your plan or purchase additional capacity without any service interruption.",
+    a: "Yes. Upgrade, downgrade, or move to a custom Enterprise plan anytime. Changes take effect at the start of your next billing cycle.",
   },
   {
     q: "Do you offer annual billing?",
-    a: "Yes, annual plans come with a 20% discount compared to monthly billing.",
+    a: "Yes — annual plans include a discount over monthly billing. Reach out and we'll set it up for you.",
   },
   {
     q: "Is there a setup fee?",
-    a: "No setup fees on any plan. You only pay for what's in your chosen plan.",
+    a: "No setup fees on any plan. You only pay for what's in your chosen plan, plus any extended credits you buy on-demand.",
   },
 ];
+
+const renderCell = (value: Cell) => {
+  if (value === true) {
+    return (
+      <div
+        className="w-6 h-6 rounded-full flex items-center justify-center mx-auto"
+        style={{ background: "linear-gradient(135deg, rgba(var(--color-primary-rgb),0.18), rgba(var(--color-secondary-rgb),0.12))" }}
+      >
+        <Check className="w-3.5 h-3.5 text-primary" />
+      </div>
+    );
+  }
+  if (value === false) {
+    return <X className="w-4 h-4 text-muted-foreground/40 mx-auto" />;
+  }
+  return <span className="text-sm text-foreground/90">{value}</span>;
+};
 
 const Pricing = () => {
   return (
@@ -144,7 +220,7 @@ const Pricing = () => {
               <span className="text-gradient">Pricing</span>
             </h1>
             <p className="text-base md:text-lg text-muted-foreground italic font-light">
-              Choose the plan that fits your needs. All plans include a 14-day free trial.
+              Plans scale with your feedback volume and team size. Every tier includes our full AI foundation.
             </p>
           </motion.div>
         </div>
@@ -184,13 +260,7 @@ const Pricing = () => {
                       <div className="w-full h-full rounded-2xl bg-card" />
                     </div>
                   )}
-                  <div className={`
-                    relative h-full rounded-2xl p-7
-                    transition-all duration-400 ease-out
-                    hover:shadow-[0_0_40px_-10px_rgba(var(--color-secondary-rgb),0.3)]
-                    hover:-translate-y-1
-                    ${plan.popular ? "glass-card" : "glass-card"}
-                  `}>
+                  <div className="relative h-full rounded-2xl p-7 glass-card flex flex-col transition-all duration-400 ease-out hover:shadow-[0_0_40px_-10px_rgba(var(--color-secondary-rgb),0.3)] hover:-translate-y-1">
                     <div className="mb-6">
                       <h3 className="text-xl font-bold text-foreground mb-2">
                         {plan.name}
@@ -200,16 +270,31 @@ const Pricing = () => {
                       </p>
                     </div>
 
-                    <div className="mb-7 pb-7 border-b border-white/[0.06]">
-                      <span className="text-4xl font-bold text-foreground">
-                        {plan.price}
-                      </span>
-                      <span className="text-muted-foreground text-sm">
-                        {plan.period}
-                      </span>
+                    <div className="mb-6 pb-6 border-b border-white/[0.06]">
+                      <div className="flex items-baseline gap-1">
+                        <span className={`font-bold text-foreground ${plan.price.startsWith("$") ? "text-4xl" : "text-2xl"}`}>
+                          {plan.price}
+                        </span>
+                        {plan.period && (
+                          <span className="text-muted-foreground text-sm">
+                            {plan.period}
+                          </span>
+                        )}
+                      </div>
                     </div>
 
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-2.5 mb-6">
+                      {plan.meta.map(({ icon: Icon, label }) => (
+                        <li key={label} className="flex items-center gap-2.5">
+                          <Icon className="w-4 h-4 text-primary shrink-0" />
+                          <span className="text-sm text-foreground/90 font-medium">{label}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="h-px w-full bg-white/[0.06] mb-6" />
+
+                    <ul className="space-y-3 mb-8 flex-1">
                       {plan.features.map((feature) => (
                         <li key={feature} className="flex items-start gap-3">
                           <div
@@ -226,15 +311,15 @@ const Pricing = () => {
                     </ul>
 
                     {plan.popular ? (
-                      <Button variant="hero" className="w-full" size="lg" asChild>
+                      <Button variant="hero" className="w-full h-11 text-sm" asChild>
                         <Link to="/about#contact">{plan.cta}</Link>
                       </Button>
                     ) : (
                       <Link
                         to="/about#contact"
-                        className="flex items-center justify-center w-full rounded-lg p-[2px] bg-gradient-primary-btn hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
+                        className="flex items-center justify-center w-full h-11 rounded-lg p-[2px] bg-gradient-primary-btn hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
                       >
-                        <span className="flex items-center justify-center w-full rounded-md bg-background px-5 py-2.5 text-sm font-semibold text-foreground">
+                        <span className="flex items-center justify-center w-full h-full rounded-md bg-background text-sm font-semibold text-foreground">
                           {plan.cta}
                         </span>
                       </Link>
@@ -244,6 +329,146 @@ const Pricing = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Feature Comparison */}
+      <section id="compare" className="py-24 lg:py-32 relative overflow-hidden">
+        <GlowOrb size={260} className="top-[10%] left-[5%] opacity-15 hidden md:block" delay={0.3} />
+        <GlowOrb size={220} className="bottom-[15%] right-[6%] opacity-20 hidden md:block" delay={0.6} />
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto mb-14"
+          >
+            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass border border-primary/20 text-base md:text-lg text-primary font-medium mb-4">
+              Compare Plans
+            </span>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 tracking-tight">
+              Everything you get, <span className="text-gradient">side-by-side</span>
+            </h2>
+            <p className="text-base text-muted-foreground italic font-light">
+              Full breakdown of AI capabilities and product management features across every tier.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative max-w-6xl mx-auto rounded-2xl overflow-hidden"
+          >
+            <div className="absolute inset-0 rounded-2xl p-[1px] opacity-40" style={{ background: "var(--gradient-primary)" }}>
+              <div className="w-full h-full rounded-2xl bg-card" />
+            </div>
+            <div className="relative glass-card rounded-2xl p-4 md:p-8">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[720px] border-separate" style={{ borderSpacing: 0 }}>
+                  <thead>
+                    <tr>
+                      <th className="text-left py-4 px-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">Feature</th>
+                      {plans.map((p) => (
+                        <th key={p.name} className="py-4 px-4 text-center">
+                          <div className="flex flex-col items-center gap-1">
+                            <span className={`text-sm font-bold ${p.popular ? "text-gradient" : "text-foreground"}`}>{p.name}</span>
+                            <span className="text-xs text-muted-foreground">{p.price}{p.period}</span>
+                          </div>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonGroups.map((group, gIndex) => (
+                      <Fragment key={group.title}>
+                        <tr>
+                          <td
+                            colSpan={5}
+                            className={`text-xs font-semibold uppercase tracking-[0.15em] text-primary/90 py-3 px-4 ${
+                              gIndex > 0 ? "pt-8" : ""
+                            }`}
+                          >
+                            {group.title}
+                          </td>
+                        </tr>
+                        {group.rows.map((row, rIndex) => (
+                          <tr
+                            key={`${group.title}-${row.feature}`}
+                            className={rIndex % 2 === 0 ? "bg-white/[0.015]" : ""}
+                          >
+                            <td className="py-3.5 px-4 text-sm text-foreground/90 border-t border-white/[0.05]">
+                              {row.feature}
+                            </td>
+                            {row.values.map((v, i) => (
+                              <td key={i} className="py-3.5 px-4 text-center border-t border-white/[0.05]">
+                                {renderCell(v)}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </Fragment>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Credit Usage */}
+      <section id="credits" className="py-20 lg:py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto mb-10"
+          >
+            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass border border-primary/20 text-sm md:text-base text-primary font-medium mb-4">
+              Credit Usage
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 tracking-tight">
+              Transparent <span className="text-gradient">per-action costs</span>
+            </h2>
+            <p className="text-sm md:text-base text-muted-foreground italic font-light">
+              Every plan includes a monthly credit pool. Here's what each action typically consumes.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto grid gap-3"
+          >
+            {credits.map((c, i) => (
+              <motion.div
+                key={c.action}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="group relative rounded-xl overflow-hidden"
+              >
+                <div className="absolute inset-0 rounded-xl p-[1px] opacity-0 group-hover:opacity-40 transition-opacity duration-500" style={{ background: "var(--gradient-primary)" }}>
+                  <div className="w-full h-full rounded-xl bg-card" />
+                </div>
+                <div className="relative glass-card rounded-xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <span className="text-sm md:text-base text-foreground/90">{c.action}</span>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm font-semibold text-primary">{c.cost}</span>
+                    <span className="text-xs text-muted-foreground">{c.usd}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <p className="text-center text-xs text-muted-foreground/70 mt-8 italic font-light max-w-2xl mx-auto">
+            Need more? Extended credits are available on-demand — no plan change required.
+          </p>
         </div>
       </section>
 
