@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useMemo } from "react";
-import { Brain, MessageSquare, BarChart3, Zap, GitBranch, TrendingUp, Filter, Download, ArrowRight } from "lucide-react";
+import { Brain, MessageSquare, BarChart3, Zap, GitBranch, TrendingUp, Cloud, ClipboardCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -63,14 +63,14 @@ const PipelineAnimation = () => {
   useEffect(() => {
     const cycle = () => {
       setAnimState(1);
-      setTimeout(() => setAnimState(2), 2500);   // left done → saramsa glows
-      setTimeout(() => setAnimState(3), 4500);   // saramsa done → right flows
-      setTimeout(() => setAnimState(4), 7000);   // right done → all lit
-      setTimeout(() => setAnimState(5), 8500);   // hold → fade out
-      setTimeout(() => setAnimState(0), 9500);   // reset
+      setTimeout(() => setAnimState(2), 2000);   // left done → saramsa glows
+      setTimeout(() => setAnimState(3), 3600);   // saramsa done → right flows
+      setTimeout(() => setAnimState(4), 5600);   // right done → all lit
+      setTimeout(() => setAnimState(5), 6800);   // hold → fade out
+      setTimeout(() => setAnimState(0), 7600);   // reset
     };
     cycle();
-    const interval = setInterval(cycle, 10500);
+    const interval = setInterval(cycle, 8500);
     return () => clearInterval(interval);
   }, []);
 
@@ -86,7 +86,7 @@ const PipelineAnimation = () => {
       {/* Left badge: Feedback */}
       <motion.div
         animate={{ scale: leftFlowing ? [1, 1.04, 1] : 1 }}
-        transition={{ duration: 2, repeat: leftFlowing ? Infinity : 0 }}
+        transition={{ duration: 1.6, repeat: leftFlowing ? Infinity : 0 }}
         className="relative flex items-center gap-2 text-xs md:text-sm rounded-xl px-3 md:px-4 py-2 md:py-2.5 z-10 border border-white/[0.08] shadow-lg"
         style={{
           background: "linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%)",
@@ -122,7 +122,7 @@ const PipelineAnimation = () => {
             fading
               ? { opacity: { duration: 0.5 }, x: { duration: 0 } }
               : leftFlowing
-              ? { duration: 2.2, ease: "easeInOut" }
+              ? { duration: 1.8, ease: "easeInOut" }
               : { duration: 0 }
           }
         />
@@ -135,7 +135,7 @@ const PipelineAnimation = () => {
               boxShadow: "0 0 10px rgba(var(--color-primary-rgb),0.6), 0 0 20px rgba(var(--color-primary-rgb),0.3)",
             }}
             animate={{ left: ["-8%", "105%"] }}
-            transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.2 }}
+            transition={{ duration: 1.6, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.15 }}
           />
         )}
       </div>
@@ -147,12 +147,12 @@ const PipelineAnimation = () => {
           className="absolute -inset-3 rounded-3xl blur-xl pointer-events-none"
           style={{ background: "radial-gradient(circle, rgba(var(--color-primary-rgb),0.35) 0%, rgba(var(--color-secondary-rgb),0.2) 50%, transparent 80%)" }}
           animate={glowOn ? { opacity: [0, 0.7, 0.4, 0.7], scale: [0.95, 1.05, 1, 1.05] } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 2.5, repeat: glowOn ? Infinity : 0, ease: "easeInOut" }}
+          transition={{ duration: 2.0, repeat: glowOn ? Infinity : 0, ease: "easeInOut" }}
         />
         {/* Card with gradient border */}
         <motion.div
           animate={glowOn ? { scale: [1, 1.03, 1] } : { scale: 1 }}
-          transition={{ duration: 2, repeat: glowOn ? Infinity : 0, ease: "easeInOut" }}
+          transition={{ duration: 1.6, repeat: glowOn ? Infinity : 0, ease: "easeInOut" }}
           className="relative rounded-2xl p-[1.5px]"
           style={{
             background: glowOn
@@ -185,7 +185,7 @@ const PipelineAnimation = () => {
             fading
               ? { opacity: { duration: 0.5 }, x: { duration: 0 } }
               : rightFlowing
-              ? { duration: 2.2, ease: "easeInOut" }
+              ? { duration: 1.8, ease: "easeInOut" }
               : { duration: 0 }
           }
         />
@@ -198,7 +198,7 @@ const PipelineAnimation = () => {
               boxShadow: "0 0 10px rgba(var(--color-secondary-rgb),0.6), 0 0 20px rgba(var(--color-secondary-rgb),0.3)",
             }}
             animate={{ left: ["-8%", "105%"] }}
-            transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.2 }}
+            transition={{ duration: 1.6, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.15 }}
           />
         )}
       </div>
@@ -206,7 +206,7 @@ const PipelineAnimation = () => {
       {/* Right badge: Action Items */}
       <motion.div
         animate={{ scale: rightFlowing ? [1, 1.04, 1] : 1 }}
-        transition={{ duration: 2, repeat: rightFlowing ? Infinity : 0 }}
+        transition={{ duration: 1.6, repeat: rightFlowing ? Infinity : 0 }}
         className="relative flex items-center gap-2 text-xs md:text-sm rounded-xl px-3 md:px-4 py-2 md:py-2.5 z-10 border border-white/[0.08] shadow-lg"
         style={{
           background: "linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%)",
@@ -233,7 +233,7 @@ const PipelineAnimation = () => {
 
 const RotatingText = () => {
   const phrases = useMemo(
-    () => ["Raw Feedback", "Messy Reviews", "Support Tickets"],
+    () => ["Raw Feedback", "Scattered Reviews", "Support Tickets"],
     []
   );
   const [index, setIndex] = useState(0);
@@ -241,7 +241,7 @@ const RotatingText = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % phrases.length);
-    }, 3500);
+    }, 2800);
     return () => clearInterval(interval);
   }, [phrases]);
 
@@ -415,14 +415,14 @@ const platformFeatures = [
     icon: MessageSquare,
     title: "Multi-Channel Integration",
     subtitle: "Every source, one view",
-    description: "Reviews, surveys, social media, Slack, support tickets — all flowing into a single unified platform automatically.",
+    description: "Slack channels and file uploads flow into one unified feedback stream — automatically ingested and analyzed.",
     visual: "channels",
   },
   {
     icon: GitBranch,
     title: "Connected Workflows",
     subtitle: "Fits where you work",
-    description: "Insights flow directly into Jira, Azure DevOps, Asana, and Slack. No copy-paste, no context switching.",
+    description: "User stories and work items flow directly into Jira and Azure DevOps. No copy-paste, no context switching.",
     visual: "workflow",
   },
   {
@@ -493,7 +493,7 @@ const FeatureVisual = ({ type }: { type: string }) => {
     ),
     channels: (
       <div className="flex flex-wrap gap-1.5 items-center justify-center h-full px-4">
-        {["Slack", "Jira", "Zendesk", "G2", "Email", "Surveys"].map((ch, i) => (
+        {["Slack", "File Upload", "Jira", "Azure DevOps"].map((ch, i) => (
           <motion.span
             key={ch}
             initial={{ opacity: 0, scale: 0.85 }}
@@ -623,11 +623,11 @@ const FeatureShowcase = () => {
 };
 
 const demoFeatures = [
-  { icon: MessageSquare, title: "Feedback Collection", description: "See how we aggregate feedback from multiple sources" },
-  { icon: BarChart3, title: "AI Analysis", description: "Watch our AI categorize and analyze sentiment" },
-  { icon: TrendingUp, title: "Trend Detection", description: "Discover emerging patterns and opportunities" },
-  { icon: Filter, title: "Smart Filters", description: "Slice data by any dimension you need" },
-  { icon: Download, title: "Export Reports", description: "Generate stakeholder-ready reports instantly" },
+  { icon: MessageSquare, title: "Feedback Collection", description: "Aggregate feedback from Slack channels and file uploads" },
+  { icon: BarChart3, title: "AI Analysis", description: "Categorize, tag, and analyze sentiment automatically" },
+  { icon: Cloud, title: "Themes & Keywords", description: "Surface top themes, aspects, and keyword clouds at a glance" },
+  { icon: TrendingUp, title: "Trend Detection", description: "Track historical patterns and emerging opportunities" },
+  { icon: ClipboardCheck, title: "User Story Review", description: "Review and refine AI-generated user stories before shipping" },
 ];
 
 const sampleFeedback = [
