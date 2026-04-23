@@ -76,7 +76,7 @@ export const Navbar = () => {
               Contact Us
             </button>
             <a
-              href="https://saramsa-ai.vercel.app/"
+              href="https://agent.saramsa.ai/"
               target="_blank"
               rel="noopener noreferrer"
               className="relative inline-flex items-center justify-center rounded-lg p-[2px] bg-gradient-primary-btn hover:scale-105 active:scale-95 hover:glow-primary transition-all duration-300"
@@ -137,7 +137,7 @@ export const Navbar = () => {
                   Contact Us
                 </button>
                 <a
-                  href="https://saramsa-ai.vercel.app/"
+                  href="https://agent.saramsa.ai/"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}
