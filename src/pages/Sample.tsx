@@ -144,7 +144,7 @@ const Sample = () => {
                   asChild
                 >
                   <Link
-                    to={plan.name === "Enterprise" ? "/contact" : "/demo"}
+                    to={plan.name === "Enterprise" ? "/about#contact" : "/#demo"}
                   >
                     {plan.cta}
                   </Link>

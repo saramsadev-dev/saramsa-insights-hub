@@ -182,7 +182,7 @@ const Demo = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button variant="hero" size="lg" asChild>
-                <Link to="/contact">Contact Us</Link>
+                <Link to="/about#contact">Contact Us</Link>
               </Button>
             </div>
           </motion.div>

@@ -225,13 +225,13 @@ const Features = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button variant="hero" size="xl">
-                <Link to="/demo" className="inline-flex items-center justify-center gap-2 w-full">
+                <Link to="/#demo" className="inline-flex items-center justify-center gap-2 w-full">
                   Try Free Demo
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link to="/pricing">View Pricing</Link>
+                <Link to="/pricing#plans">View Pricing</Link>
               </Button>
             </div>
           </motion.div>

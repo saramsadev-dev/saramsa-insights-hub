@@ -67,7 +67,7 @@ const Partnerships = () => {
               Join our partner ecosystem and help businesses unlock the power of customer feedback analytics.
             </p>
             <Button variant="hero" size="xl" asChild>
-              <Link to="/contact">Become a Partner</Link>
+              <Link to="/about#contact">Become a Partner</Link>
             </Button>
           </motion.div>
         </div>
@@ -206,7 +206,7 @@ const Partnerships = () => {
               Join our growing partner network and unlock new opportunities.
             </p>
             <Button variant="hero" size="lg" asChild>
-              <Link to="/contact">Apply Now</Link>
+              <Link to="/about#contact">Apply Now</Link>
             </Button>
           </motion.div>
         </div>
