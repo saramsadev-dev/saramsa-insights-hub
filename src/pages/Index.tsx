@@ -937,7 +937,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Demo Section */}
+      {/* Demo Section — hidden, flip the `false &&` guard below to re-enable */}
+      {false && (
       <section id="demo" className="pt-14 pb-4 md:pt-20 md:pb-6 lg:pt-28 lg:pb-8 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
@@ -1067,6 +1068,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* CTA Section */}
       <section className="pt-14 pb-14 md:pt-20 md:pb-20 lg:pt-28 lg:pb-28 relative overflow-hidden">
