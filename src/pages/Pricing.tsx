@@ -167,7 +167,14 @@ const renderCell = (value: Cell) => {
     );
   }
   if (value === false) {
-    return <X className="w-4 h-4 text-muted-foreground/40 mx-auto" />;
+    return (
+      <div
+        className="w-6 h-6 rounded-full flex items-center justify-center mx-auto"
+        style={{ background: "linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(239, 68, 68, 0.08))" }}
+      >
+        <X className="w-3.5 h-3.5 text-red-400/90" strokeWidth={2.5} />
+      </div>
+    );
   }
   return <span className="text-sm text-foreground/90">{value}</span>;
 };
