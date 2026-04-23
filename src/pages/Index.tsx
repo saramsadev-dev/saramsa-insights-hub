@@ -233,7 +233,7 @@ const PipelineAnimation = () => {
 
 const RotatingText = () => {
   const phrases = useMemo(
-    () => ["Raw Feedback", "Scattered Reviews", "Support Tickets"],
+    () => ["Raw Feedback", "Messy Reviews", "Support Tickets"],
     []
   );
   const [index, setIndex] = useState(0);
