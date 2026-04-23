@@ -10,14 +10,12 @@ const productLinks = [
 
 const companyLinks = [
   { name: "About", path: "/about" },
-  { name: "Partnerships", path: "/integrations#partnerships" },
   { name: "Contact", path: "/about#contact" },
 ];
 
 const getInTouchLinks = [
   { name: "Book a Demo", href: "/about#contact", external: false },
   { name: "Email Us", href: "mailto:saramsa.aiventures@gmail.com", external: true },
-  { name: "Sign In", href: "https://saramsa-ai.vercel.app/", external: true },
 ];
 
 const linkClass =
