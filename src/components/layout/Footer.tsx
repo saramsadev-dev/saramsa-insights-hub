@@ -50,7 +50,7 @@ export const Footer = () => {
             {/* Product */}
             <div>
               <h4 className={headingClass}>Product</h4>
-              <ul className="space-y-2">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {productLinks.map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className={linkClass}>
@@ -64,7 +64,7 @@ export const Footer = () => {
             {/* Company */}
             <div>
               <h4 className={headingClass}>Company</h4>
-              <ul className="space-y-2">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {companyLinks.map((link) => (
                   <li key={link.name}>
                     <Link to={link.path} className={linkClass}>
@@ -78,7 +78,7 @@ export const Footer = () => {
             {/* Get in touch */}
             <div>
               <h4 className={headingClass}>Get in touch</h4>
-              <ul className="space-y-2">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
                 {getInTouchLinks.map((link) =>
                   link.external ? (
                     <li key={link.name}>
