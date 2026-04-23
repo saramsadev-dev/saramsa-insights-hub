@@ -132,13 +132,6 @@ const comparisonGroups: { title: string; rows: { feature: string; values: [Cell,
   },
 ];
 
-const credits = [
-  { action: "Process 1 feedback (summarize + classify)", cost: "10 credits", usd: "~$0.002" },
-  { action: "Cluster 100 feedback items", cost: "50 credits", usd: "~$0.009" },
-  { action: "Generate 1 user story", cost: "25 credits", usd: "~$0.004" },
-  { action: "Re-run full analysis (bulk)", cost: "100–500 credits", usd: "$0.02–$0.08" },
-];
-
 const faqs = [
   {
     q: "How do AI credits work?",
@@ -416,61 +409,6 @@ const Pricing = () => {
               </div>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Credit Usage */}
-      <section id="credits" className="py-20 lg:py-24 relative overflow-hidden">
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-10"
-          >
-            <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass border border-primary/20 text-sm md:text-base text-primary font-medium mb-4">
-              Credit Usage
-            </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 tracking-tight">
-              Transparent <span className="text-gradient">per-action costs</span>
-            </h2>
-            <p className="text-sm md:text-base text-muted-foreground italic font-light">
-              Every plan includes a monthly credit pool. Here's what each action typically consumes.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto grid gap-3"
-          >
-            {credits.map((c, i) => (
-              <motion.div
-                key={c.action}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="group relative rounded-xl overflow-hidden"
-              >
-                <div className="absolute inset-0 rounded-xl p-[1px] opacity-0 group-hover:opacity-40 transition-opacity duration-500" style={{ background: "var(--gradient-primary)" }}>
-                  <div className="w-full h-full rounded-xl bg-card" />
-                </div>
-                <div className="relative glass-card rounded-xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <span className="text-sm md:text-base text-foreground/90">{c.action}</span>
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm font-semibold text-primary">{c.cost}</span>
-                    <span className="text-xs text-muted-foreground">{c.usd}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <p className="text-center text-xs text-muted-foreground/70 mt-8 italic font-light max-w-2xl mx-auto">
-            Need more? Extended credits are available on-demand — no plan change required.
-          </p>
         </div>
       </section>
 
