@@ -334,7 +334,8 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* Feature Comparison */}
+      {/* Feature Comparison — hidden, uncomment block below to re-enable */}
+      {/*
       <section id="compare" className="py-24 lg:py-32 relative overflow-hidden">
         <GlowOrb size={260} className="top-[10%] left-[5%] opacity-15 hidden md:block" delay={0.3} />
         <GlowOrb size={220} className="bottom-[15%] right-[6%] opacity-20 hidden md:block" delay={0.6} />
@@ -418,6 +419,7 @@ const Pricing = () => {
           </motion.div>
         </div>
       </section>
+      */}
 
       {/* FAQ */}
       <section id="faq" className="py-24 lg:py-32 relative overflow-hidden">
