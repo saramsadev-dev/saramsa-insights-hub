@@ -6,6 +6,36 @@ import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlowOrb } from "@/components/3d/GlowOrb";
+import { SEO } from "@/components/SEO";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Saramsa.ai",
+  url: "https://saramsa.ai",
+  logo: "https://saramsa.ai/saramsa-logo-light.png",
+  description: "AI-powered customer feedback intelligence platform that turns raw feedback into prioritized user stories and roadmap items.",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+91-9789524825",
+    contactType: "customer support",
+    email: "saramsa.aiventures@gmail.com",
+  },
+  sameAs: [],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Saramsa.ai",
+  url: "https://saramsa.ai",
+  description: "Turn raw customer feedback into prioritized features and build-ready user stories with AI.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://saramsa.ai/?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
 
 /* ──────────────────────────────────────────
    Pipeline Animation Icons
@@ -643,6 +673,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Saramsa.ai — Raw Feedback to Roadmap in Seconds"
+        description="Saramsa.ai uses AI to analyze customer feedback, detect trends, and generate build-ready user stories directly into Jira and Azure DevOps. Book a demo today."
+        canonical="/"
+        structuredData={[organizationSchema, websiteSchema]}
+      />
       <Navbar />
 
       {/* Hero Section */}

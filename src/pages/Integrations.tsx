@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { GlowOrb } from "@/components/3d/GlowOrb";
+import { SEO } from "@/components/SEO";
 
 import logoJira from "@/assets/logos/jira.svg";
 import logoAzure from "@/assets/logos/azure-devops.svg";
@@ -86,6 +87,11 @@ const IntegrationTile = ({ item, index }: { item: Integration; index: number }) 
 const Integrations = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Integrations — Connect Jira, Slack, Zendesk & More"
+        description="Saramsa.ai integrates with Zendesk, Intercom, SurveyMonkey, Jira, Azure DevOps, Slack, Asana, and more. Pull feedback in, push prioritized insights out."
+        canonical="/integrations"
+      />
       <Navbar />
 
       {/* Hero */}

@@ -12,6 +12,7 @@ import { FloatingBubble } from "@/components/3d/FloatingBubble";
 import { FloatingBrain } from "@/components/3d/FloatingBrain";
 import { FloatingChart } from "@/components/3d/FloatingChart";
 import { GlowOrb } from "@/components/3d/GlowOrb";
+import { SEO } from "@/components/SEO";
 
 const coreFeatures = [
   {
@@ -95,6 +96,11 @@ const advancedFeatures = [
 const Features = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Features — AI Feedback Analysis & User Story Generation"
+        description="Explore Saramsa.ai's core capabilities: AI-powered sentiment analysis, multi-channel feedback integration, trend detection, and automated user story creation for product teams."
+        canonical="/features"
+      />
       <Navbar />
 
       {/* Hero Section */}

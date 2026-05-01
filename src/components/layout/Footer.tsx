@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import logo from "@/assets/saramsa-logo.png";
 
 const productLinks = [
-  { name: "Features", path: "/#features" },
+  { name: "Features", path: "/features" },
   { name: "Demo", path: "/#demo" },
-  { name: "Integrations", path: "/integrations#output-tracking" },
+  { name: "Integrations", path: "/integrations" },
   { name: "Pricing", path: "/pricing#plans" },
 ];
 

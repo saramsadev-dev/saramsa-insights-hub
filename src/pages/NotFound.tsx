@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlowOrb } from "@/components/3d/GlowOrb";
+import { SEO } from "@/components/SEO";
 
 const NotFound = () => {
   const location = useLocation();
@@ -14,6 +15,12 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background relative overflow-hidden">
+      <SEO
+        title="404 — Page Not Found | Saramsa.ai"
+        description="The page you're looking for doesn't exist. Return to Saramsa.ai to explore AI-powered customer feedback analysis."
+        canonical="/404"
+        noIndex={true}
+      />
       <div className="absolute inset-0 grid-pattern opacity-20" />
       <GlowOrb size={400} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 

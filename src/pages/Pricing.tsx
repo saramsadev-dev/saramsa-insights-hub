@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlowOrb } from "@/components/3d/GlowOrb";
+import { SEO } from "@/components/SEO";
 
 const plans = [
   {
@@ -180,8 +181,27 @@ const renderCell = (value: Cell) => {
 };
 
 const Pricing = () => {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Pricing — Saramsa.ai Plans Starting at $19/month"
+        description="Simple, transparent pricing for AI-powered feedback analysis. Starter at $19/mo, Growth at $90/mo, Pro at $299/mo, and custom Enterprise plans. No setup fees."
+        canonical="/pricing"
+        structuredData={faqSchema}
+      />
       <Navbar />
 
       {/* Hero */}

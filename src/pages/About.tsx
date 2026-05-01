@@ -9,6 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 import { GlowOrb } from "@/components/3d/GlowOrb";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
+import { SEO } from "@/components/SEO";
 
 const FREE_EMAIL_DOMAINS = [
   "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com",
@@ -102,6 +103,11 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="About Saramsa.ai — The Essence of Customer Feedback"
+        description="Learn how Saramsa.ai distills clarity from customer feedback at scale. Meet the team, understand our mission, and get in touch with us directly."
+        canonical="/about"
+      />
       <Navbar />
 
       {/* Hero */}
